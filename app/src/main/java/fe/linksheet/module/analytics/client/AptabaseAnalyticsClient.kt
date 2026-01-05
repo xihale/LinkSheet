@@ -15,7 +15,7 @@ import fe.linksheet.module.preference.app.AppPreferenceRepository
 import fe.linksheet.module.preference.app.AppPreferences
 import fe.linksheet.util.buildconfig.BuildType
 import fe.std.javatime.extension.unixMillisAtZone
-import mozilla.components.support.base.log.logger.Logger
+import app.linksheet.lib.log.moz.log.logger.Logger
 import org.koin.dsl.module
 import java.io.IOException
 import java.time.format.DateTimeFormatter
@@ -23,23 +23,31 @@ import java.time.format.DateTimeFormatter
 @OptIn(SensitivePreference::class)
 val aptabaseAnalyticsClientModule = module {
     single<AnalyticsClient> {
-        val applicationContext = get<LinkSheetApp>()
-        val preferences = get<AppPreferenceRepository>()
-        val id = preferences.getOrPutInit(AppPreferences.telemetryId)
-        val identity = preferences.get(AppPreferences.telemetryIdentity)
+        val apiKey = BuildConfig.APTABASE_API_KEY
+        val parts = apiKey?.split("-").takeIf { it?.size == 3 }
+        val region = parts?.get(1)
 
-        AptabaseAnalyticsClient(
-            identity.create(applicationContext, id),
-            Logger("AptabaseAnalyticsClient"),
-            BuildConfig.APTABASE_API_KEY
-        )
+        if (apiKey == null || region == null || !AptabaseAnalyticsClient.HOSTS.containsKey(region)) {
+            NoOpAnalyticsClient()
+        } else {
+            val applicationContext = get<LinkSheetApp>()
+            val preferences = get<AppPreferenceRepository>()
+            val id = preferences.getOrPutInit(AppPreferences.telemetryId)
+            val identity = preferences.get(AppPreferences.telemetryIdentity)
+
+            AptabaseAnalyticsClient(
+                identity.create(applicationContext, id),
+                Logger("AptabaseAnalyticsClient"),
+                apiKey
+            )
+        }
     }
 }
 
 internal class AptabaseAnalyticsClient(
     private val identityData: TelemetryIdentityData,
     logger: Logger,
-    private val apiKey: String?,
+    private val apiKey: String,
 ) : AnalyticsClient(logger = logger) {
     private val environmentInfo = EnvironmentInfo.from(identityData)
 
@@ -90,21 +98,12 @@ internal class AptabaseAnalyticsClient(
     )
 
     private val request = TaggedRequest {
-        apiKey?.let { addHeaderImpl("App-Key", apiKey) }
+        addHeaderImpl("App-Key", apiKey)
     }
 
-    private val baseUrl: String
-    private val apiEvent: String
-    private val apiEvents: String
-
-    init {
-        val parts = apiKey?.split("-").takeIf { it?.size == 3 }
-        val region = parts?.get(1)
-        baseUrl = HOSTS[region] ?: throw Exception("The Aptabase App Key $apiKey is invalid!")
-
-        apiEvent = "$baseUrl/api/v0/event"
-        apiEvents = "$baseUrl/api/v0/events"
-    }
+    private val baseUrl: String = HOSTS[apiKey.split("-")[1]]!!
+    private val apiEvent: String = "$baseUrl/api/v0/event"
+    private val apiEvents: String = "$baseUrl/api/v0/events"
 
     private fun buildEvent(event: AnalyticsEvent): AptabaseEvent {
         val timestamp = event.unixMillis.unixMillisAtZone().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)

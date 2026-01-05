@@ -118,5 +118,22 @@
 -dontwarn io.ktor.utils.io.CoroutinesKt
 -dontwarn org.slf4j.impl.StaticLoggerBinder
 
+# Keep LayoutInflater Factory methods
+-keep public class * implements android.view.LayoutInflater$Factory
+-keep public class * implements android.view.LayoutInflater$Factory2 {
+    public android.view.View onCreateView(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet);
+    public android.view.View onCreateView(java.lang.String, android.content.Context, android.util.AttributeSet);
+}
+
+# Keep AndroidX core components
+-keep class androidx.activity.** { *; }
+-keep class androidx.fragment.** { *; }
+-keep class androidx.appcompat.** { *; }
+-keep interface androidx.lifecycle.** { *; }
+
+# Keep AppCompat internals that might be stripped incorrectly
+-keep class androidx.appcompat.app.AppCompatDelegateImpl { *; }
+-keep class androidx.appcompat.app.AppCompatViewInflater { *; }
+
 -printmapping mapping.txt
 -printusage usage.txt

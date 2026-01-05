@@ -43,7 +43,7 @@ import io.ktor.client.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
-import mozilla.components.support.base.log.logger.Logger
+import app.linksheet.lib.log.moz.log.logger.Logger
 import kotlin.uuid.ExperimentalUuidApi
 
 class RealLinkEngine(

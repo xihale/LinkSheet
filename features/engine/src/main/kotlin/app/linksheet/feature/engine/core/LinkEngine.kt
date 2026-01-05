@@ -9,7 +9,7 @@ import fe.std.uri.StdUrl
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import mozilla.components.support.base.log.logger.Logger
+import app.linksheet.lib.log.moz.log.logger.Logger
 
 class LinkEngine(
     private val steps: List<EngineStep<*>>,

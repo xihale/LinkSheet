@@ -9,7 +9,7 @@ import fe.linksheet.composable.page.edit.TextSource
 import fe.linksheet.composable.page.edit.TextValidator
 import fe.linksheet.composable.page.edit.WebUriTextValidator
 import fe.linksheet.composable.ui.AppTheme
-import mozilla.components.support.base.log.logger.Logger
+import app.linksheet.lib.log.moz.log.logger.Logger
 import org.koin.core.component.KoinComponent
 
 

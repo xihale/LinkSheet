@@ -12,7 +12,7 @@ import fe.std.javatime.time.localizedString
 import fe.std.javatime.time.unixMillis
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mozilla.components.support.base.log.Log
+import app.linksheet.lib.log.moz.log.Log
 import java.io.File
 import java.time.LocalDateTime
 

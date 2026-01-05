@@ -2,12 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package mozilla.components.support.base.log
+package app.linksheet.lib.log.moz.log
 
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import mozilla.components.support.base.log.sink.LogSink
-import mozilla.components.support.base.log.sink.TestModeLogSink
+import app.linksheet.lib.log.moz.log.sink.LogSink
+import app.linksheet.lib.log.moz.log.sink.TestModeLogSink
 
 /**
  * API for logging messages and exceptions.

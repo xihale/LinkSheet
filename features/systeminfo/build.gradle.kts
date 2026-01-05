@@ -39,6 +39,8 @@ dependencies {
 
     implementation(AndroidX.core.ktx)
 
+    compileOnly(project(":hidden-api"))
+
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
     testImplementation(Grrfe.std.test)

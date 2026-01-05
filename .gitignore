@@ -7,3 +7,5 @@ app/release
 app/*.txt
 .kotlin/
 /.idea2/
+node_modules
+docs
