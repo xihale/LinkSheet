@@ -5,7 +5,6 @@ import androidx.compose.ui.res.stringResource
 import app.linksheet.compose.list.item.PreferenceSwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
 import fe.linksheet.R
 import fe.linksheet.module.viewmodel.PreviewSettingsViewModel
 import org.koin.androidx.compose.koinViewModel

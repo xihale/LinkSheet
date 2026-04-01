@@ -2,7 +2,6 @@ package fe.linksheet.navigation
 
 
 import androidx.annotation.Keep
-import fe.composekit.route.Route
 import fe.linksheet.module.viewmodel.PreferredBrowserViewModel
 import kotlinx.serialization.Serializable
 

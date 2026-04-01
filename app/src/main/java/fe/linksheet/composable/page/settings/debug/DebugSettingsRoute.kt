@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.debug
 
 import androidx.activity.compose.LocalActivity
@@ -20,8 +21,7 @@ import fe.android.compose.feedback.LocalHapticFeedbackInteraction
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.linksheet.extension.android.showToast

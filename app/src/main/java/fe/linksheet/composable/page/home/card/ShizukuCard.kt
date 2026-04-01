@@ -15,7 +15,6 @@ import dev.zwander.shared.ShizukuUtil
 import fe.android.compose.icon.DrawableIconPainter
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.card.AlertCard
 import fe.linksheet.R
 import fe.linksheet.module.shizuku.ShizukuStatus
 import fe.linksheet.util.ShizukuDownload

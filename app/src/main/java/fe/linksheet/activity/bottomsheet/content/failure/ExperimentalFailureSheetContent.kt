@@ -22,8 +22,6 @@ import fe.android.compose.dialog.helper.DialogMinWidth
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.ProvideContentColorTextStyle
-import fe.composekit.component.dialog.AlertDialogFlowRow
-import fe.composekit.route.Route
 import fe.linksheet.R
 import fe.linksheet.util.intent.parser.*
 

@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.debug.composable
 
 import android.app.Activity
@@ -22,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import app.linksheet.compose.DebugMenuButton
 import app.linksheet.feature.shizuku.shizukuDebugItem
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.activity.onboarding.OnboardingActivity
 import fe.linksheet.composable.page.settings.privacy.remoteconfig.rememberRemoteConfigDialog
 import fe.linksheet.debug.activity.ComponentStateActivity

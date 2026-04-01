@@ -9,9 +9,7 @@ import androidx.compose.ui.graphics.Color
 import app.linksheet.compose.theme.DarkColors
 import app.linksheet.compose.theme.LightColors
 import fe.android.preference.helper.OptionTypeMapper
-import fe.composekit.layout.column.GroupValueProvider
 import fe.linksheet.R
-import fe.composekit.core.AndroidVersion
 import fe.linksheet.util.StringResHolder
 
 sealed class ThemeV2(val name: String, @StringRes stringRes: Int) : StringResHolder, GroupValueProvider<Int> {

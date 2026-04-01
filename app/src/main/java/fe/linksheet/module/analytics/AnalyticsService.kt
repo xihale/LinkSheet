@@ -3,7 +3,6 @@ package fe.linksheet.module.analytics
 import androidx.lifecycle.LifecycleCoroutineScope
 import fe.android.lifecycle.koin.extension.applicationLifecycle
 import fe.android.lifecycle.koin.extension.service
-import fe.composekit.lifecycle.network.core.NetworkStateService
 import fe.linksheet.BuildConfig
 import fe.linksheet.module.preference.SensitivePreference
 import fe.linksheet.module.preference.app.AppPreferenceRepository

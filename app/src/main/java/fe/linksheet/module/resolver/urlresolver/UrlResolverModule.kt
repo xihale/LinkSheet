@@ -1,6 +1,5 @@
 package fe.linksheet.module.resolver.urlresolver
 
-import fe.composekit.preference.asFunction
 import fe.linksheet.module.preference.experiment.ExperimentRepository
 import fe.linksheet.module.preference.experiment.Experiments
 import fe.linksheet.module.resolver.urlresolver.amp2html.Amp2HtmlResolveRequest

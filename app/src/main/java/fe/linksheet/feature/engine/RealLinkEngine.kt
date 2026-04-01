@@ -30,7 +30,6 @@ import app.linksheet.feature.engine.database.repository.ScenarioRepository
 import app.linksheet.feature.engine.eval.rule.ExpressionPostProcessorRule
 import app.linksheet.feature.engine.eval.rule.ExpressionPreProcessorRule
 import app.linksheet.feature.libredirect.LibRedirectResolver
-import fe.composekit.lifecycle.network.core.NetworkStateService
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.PreferredAppRepository
 import fe.linksheet.module.repository.whitelisted.WhitelistedInAppBrowsersRepository

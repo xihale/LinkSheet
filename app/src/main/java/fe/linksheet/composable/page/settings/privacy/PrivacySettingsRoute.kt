@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.privacy
 
 import androidx.compose.runtime.Composable
@@ -5,8 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.column.shape.ClickableShapeListItem
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import app.linksheet.compose.list.item.PreferenceSwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage

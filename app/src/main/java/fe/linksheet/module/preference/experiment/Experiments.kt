@@ -2,7 +2,6 @@ package fe.linksheet.module.preference.experiment
 
 import fe.android.preference.helper.Preference
 import fe.android.preference.helper.PreferenceDefinition
-import fe.composekit.preference.ViewModelStatePreference
 
 object Experiments : PreferenceDefinition(
     "experiment_drop_categories",

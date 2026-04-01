@@ -19,9 +19,6 @@ import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.card.AlertCard
-import fe.composekit.component.icon.IconOffset
 import fe.linksheet.R
 import fe.linksheet.module.viewmodel.ExperimentsViewModel
 import org.koin.androidx.compose.koinViewModel

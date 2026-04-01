@@ -2,8 +2,6 @@ package fe.linksheet.activity
 
 import android.content.Intent
 import android.os.Bundle
-import fe.composekit.core.getEnumExtra
-import fe.composekit.intent.buildIntent
 import fe.linksheet.composable.page.edit.TextEditorPage
 import fe.linksheet.composable.page.edit.TextSource
 import fe.linksheet.composable.page.edit.TextValidator

@@ -1,7 +1,6 @@
 package fe.linksheet.module.log
 
 import fe.android.lifecycle.koin.extension.service
-import fe.composekit.preference.asFunction
 import fe.linksheet.LinkSheetApp
 import fe.linksheet.module.log.file.LogFileService
 import fe.linksheet.module.log.file.LogPersistService

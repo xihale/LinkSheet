@@ -44,14 +44,6 @@ import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
-import fe.composekit.component.card.AlertCardContentLayout
-import fe.composekit.component.card.AlertCardDefaults
-import fe.composekit.component.icon.AppIconImage
-import fe.composekit.component.icon.FilledIcon
-import fe.composekit.component.list.column.SaneLazyColumnLayout
-import fe.composekit.component.page.SaneSettingsScaffold
-import fe.composekit.component.shape.CustomShapeDefaults
-import fe.composekit.layout.column.SaneLazyListScope
 import fe.linksheet.R
 import fe.linksheet.extension.android.isUserApp
 import app.linksheet.compose.extension.toImageBitmap

@@ -3,7 +3,6 @@ package fe.linksheet.composable.page.settings.shortcuts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
 import fe.linksheet.R
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 

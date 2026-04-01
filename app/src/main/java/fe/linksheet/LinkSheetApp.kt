@@ -26,8 +26,6 @@ import com.google.android.material.color.DynamicColors
 import fe.android.lifecycle.CurrentActivityObserver
 import fe.android.lifecycle.ProcessServiceRegistry
 import fe.android.lifecycle.koin.extension.applicationLifecycle
-import fe.composekit.core.AndroidVersion
-import fe.composekit.lifecycle.network.koin.NetworkStateServiceModule
 import fe.droidkit.koin.androidApplicationContext
 import fe.gson.GlobalGsonModule
 import fe.gson.context.GlobalGsonContext

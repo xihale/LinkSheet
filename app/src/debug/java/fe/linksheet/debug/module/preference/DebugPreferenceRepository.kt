@@ -2,7 +2,6 @@ package fe.linksheet.debug.module.preference
 
 import android.content.Context
 import fe.android.preference.helper.PreferenceDefinition
-import fe.composekit.preference.FlowPreferenceRepository
 
 class DebugPreferenceRepository(val context: Context) : FlowPreferenceRepository(context, "debug") {
 }

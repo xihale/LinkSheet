@@ -16,7 +16,6 @@ import fe.android.compose.feedback.FeedbackType
 import fe.android.compose.feedback.LocalHapticFeedbackInteraction
 import fe.android.compose.feedback.wrap
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.dialog.SaneAlertDialogTextButton
 import fe.linksheet.R
 
 

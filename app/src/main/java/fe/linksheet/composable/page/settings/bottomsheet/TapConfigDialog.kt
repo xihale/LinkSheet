@@ -17,10 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.linksheet.compose.theme.DialogTitleStyle
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.dialog.DialogDefaults
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.RadioButtonListItem
 import fe.linksheet.R
 import fe.linksheet.activity.bottomsheet.TapConfig
 

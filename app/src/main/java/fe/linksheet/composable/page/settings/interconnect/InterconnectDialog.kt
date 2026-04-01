@@ -20,8 +20,6 @@ import fe.android.compose.feedback.LocalHapticFeedbackInteraction
 import fe.android.compose.feedback.wrap
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.dialog.SaneAlertDialog
-import fe.composekit.component.dialog.SaneAlertDialogTextButton
 import fe.linksheet.R
 import fe.linksheet.module.language.DisplayLocaleItem
 import fe.linksheet.module.language.LocaleItem

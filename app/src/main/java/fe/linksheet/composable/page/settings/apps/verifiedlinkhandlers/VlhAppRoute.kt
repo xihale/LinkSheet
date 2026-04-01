@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers
 
 import androidx.activity.compose.LocalActivity
@@ -36,13 +37,6 @@ import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.ProvideContentColorOptionsStyleText
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.dialog.DialogDefaults
-import fe.composekit.component.list.column.SaneLazyColumnDefaults
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.CheckboxListItem
-import fe.composekit.component.shape.CustomShapeDefaults
-import fe.composekit.layout.column.group
 import fe.kotlin.extension.iterable.mapToSet
 import fe.linksheet.R
 import app.linksheet.feature.app.ui.AppInfoIcon

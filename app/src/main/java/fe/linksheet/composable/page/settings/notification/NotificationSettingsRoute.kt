@@ -3,7 +3,6 @@ package fe.linksheet.composable.page.settings.notification
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.layout.column.group
 import fe.linksheet.R
 import app.linksheet.compose.list.item.PreferenceSwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage

@@ -14,7 +14,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContentWrapper
-import fe.composekit.component.dialog.DialogDefaults
 import fe.linksheet.R
 import app.linksheet.compose.theme.HkGroteskFontFamily
 

@@ -18,9 +18,6 @@ import androidx.core.os.bundleOf
 import app.linksheet.feature.app.core.AppInfo
 import app.linksheet.testing.fake.PackageInfoFakes
 import app.linksheet.testing.fake.toAppInfo
-import fe.composekit.component.PreviewThemeNew
-import fe.composekit.extension.getBundleBinder
-import fe.composekit.extension.getParcelableExtraCompat
 import fe.linksheet.BuildConfig
 import fe.linksheet.composable.dialog.AppHostDialogResult
 import fe.linksheet.composable.dialog.AppInfoDialogData

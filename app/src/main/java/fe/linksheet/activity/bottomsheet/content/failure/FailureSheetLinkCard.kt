@@ -17,10 +17,6 @@ import fe.android.compose.icon.IconPainter
 import fe.android.compose.padding.Top
 import fe.android.compose.padding.exclude
 import fe.android.compose.text.TextContent
-import fe.composekit.component.card.AlertCardDefaults
-import fe.composekit.component.icon.FilledIcon
-import fe.composekit.component.icon.IconOffset
-import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
 fun FailureSheetLinkCard(

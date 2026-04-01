@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.debug.activity.locale
 
 import androidx.appcompat.app.AppCompatDelegate

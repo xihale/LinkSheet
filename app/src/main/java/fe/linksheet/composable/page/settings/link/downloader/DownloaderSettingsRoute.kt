@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.link.downloader
 
 import android.Manifest
@@ -14,13 +15,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 import fe.android.compose.text.AnnotatedStringResourceContent.Companion.annotatedStringResource
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.preference.helper.compose.StatePreference
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.toEnabledContentSet
-import fe.composekit.component.list.item.type.SliderListItem
-import fe.composekit.component.list.item.type.SwitchListItem
-import fe.composekit.core.AndroidVersion
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import fe.linksheet.module.viewmodel.DownloaderSettingsViewModel
 import org.koin.androidx.compose.koinViewModel

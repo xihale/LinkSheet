@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.compose.runtime.*
-import fe.composekit.intent.buildIntent
 import fe.linksheet.R
 import fe.linksheet.extension.android.getApplicationInfoCompat
 import fe.linksheet.util.extension.android.tryStartActivity

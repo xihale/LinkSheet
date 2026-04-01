@@ -3,7 +3,6 @@ package fe.linksheet.util.intent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import fe.composekit.intent.buildIntent
 
 object Intents {
     @Deprecated("Moved", replaceWith = ReplaceWith("StandardIntents.createSelfIntent(uri, extras)", "fe.linksheet.util.intent.StandardIntents"))

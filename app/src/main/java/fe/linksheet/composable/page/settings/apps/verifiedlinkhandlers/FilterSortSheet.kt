@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.linksheet.compose.preview.PreviewContainer
+import app.linksheet.core.ui.sheet.StandardBottomSheet
 import app.linksheet.feature.app.applist.FilterState
 import app.linksheet.feature.app.applist.SortByState
 import app.linksheet.feature.app.applist.SortType
@@ -26,11 +26,10 @@ internal fun FilterSortSheet(
     onDismiss: (SortByState, FilterState) -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState()
-    val scope = rememberCoroutineScope()
     var sortState by remember { mutableStateOf(sortState) }
     var filterState by remember { mutableStateOf(filterState) }
 
-    ModalBottomSheet(
+    StandardBottomSheet(
         onDismissRequest = { onDismiss(sortState, filterState) },
         sheetState = sheetState
     ) {
@@ -38,11 +37,7 @@ internal fun FilterSortSheet(
             sortState = sortState,
             filterState = filterState,
             onSortStateChange = { sortState = it },
-            onFilterState = { filterState = it },
-//            onDismiss = {
-//                scope.launch { sheetState.hide() }
-//                    .invokeOnCompletion { if (!sheetState.isVisible) onDismiss() }
-//            }
+            onFilterState = { filterState = it }
         )
     }
 }
@@ -58,7 +53,6 @@ private fun SheetContent(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 0.dp),
-        //        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         SortByColumn(

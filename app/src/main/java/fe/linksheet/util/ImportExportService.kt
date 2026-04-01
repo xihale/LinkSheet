@@ -9,7 +9,6 @@ import android.os.ParcelFileDescriptor
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import fe.composekit.intent.buildIntent
 import fe.gson.extension.json.`object`.asArray
 import fe.gson.extension.json.`object`.asStringOrNull
 import fe.linksheet.R

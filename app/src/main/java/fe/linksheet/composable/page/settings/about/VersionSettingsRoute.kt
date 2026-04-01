@@ -28,10 +28,6 @@ import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.AnnotatedStringResourceContent.Companion.annotatedStringResource
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.span.helper.composable.fromStringRes
-import fe.composekit.component.ContentType
-import fe.composekit.component.card.AlertCard
-import fe.composekit.component.list.column.group.ListItemData
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
 import fe.std.javatime.extension.unixMillisUtc
 import fe.linksheet.BuildConfig
 import fe.linksheet.R

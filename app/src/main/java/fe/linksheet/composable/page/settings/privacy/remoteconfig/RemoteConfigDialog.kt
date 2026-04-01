@@ -23,8 +23,6 @@ import fe.android.compose.text.AnnotatedStringResourceContent.Companion.annotate
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContentWrapper
-import fe.composekit.component.dialog.SaneAlertDialogTextButton
-import fe.composekit.component.dialog.SaneIconAlertDialog
 import fe.linksheet.R
 import app.linksheet.compose.theme.DialogTitleStyle
 import my.nanihadesuka.compose.ScrollbarSettings

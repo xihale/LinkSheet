@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers
 
 import android.os.Build
@@ -21,11 +22,7 @@ import app.linksheet.feature.app.ui.appList
 import dev.zwander.shared.ShizukuUtil
 import dev.zwander.shared.ShizukuUtil.rememberHasShizukuPermissionAsState
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.column.SaneLazyColumnLayout
-import fe.composekit.component.page.SaneSettingsScaffold
-import fe.composekit.core.AndroidVersion
-import fe.composekit.preference.collectAsStateWithLifecycle
-import fe.composekit.route.Route
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import fe.linksheet.composable.dialog.DomainVerificationDialogData
 import fe.linksheet.composable.dialog.rememberDomainVerificationAppInfoDialog

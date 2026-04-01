@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings
 
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
@@ -16,14 +17,7 @@ import app.linksheet.feature.shizuku.navigation.ShizukuRoute
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.item.RouteNavItem
-import fe.composekit.component.list.item.RouteNavigateListItem
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
-import fe.composekit.layout.column.group
-import fe.composekit.preference.collectAsStateWithLifecycle
-import fe.composekit.route.Route
-import fe.composekit.route.RouteNavItemNew
-import fe.composekit.route.RouteNavigateListItemNew
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import fe.linksheet.composable.page.settings.language.rememberLanguageDialog
 import fe.linksheet.module.language.LocaleItem

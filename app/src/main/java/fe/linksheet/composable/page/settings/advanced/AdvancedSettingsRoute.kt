@@ -7,10 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.layout.column.group
-import fe.composekit.route.Route
-import fe.composekit.route.RouteNavItemNew
-import fe.composekit.route.RouteNavigateListItemNew
 import fe.linksheet.R
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.linksheet.navigation.ExperimentRoute

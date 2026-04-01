@@ -6,7 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.material3.ExperimentalMaterial3Api
-import fe.linksheet.activity.bottomsheet.compat.CompatSheetState
+import androidx.compose.material3.SheetState
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ class DefaultBottomSheetStateController(
     val activity: Activity,
     override val editorLauncher: ActivityResultLauncher<Intent>,
     val coroutineScope: CoroutineScope,
-    val drawerState: CompatSheetState,
+    val drawerState: SheetState,
     override val onNewIntent: (Intent) -> Unit,
     override val dispatch: (Interaction) -> Unit,
 ) : BottomSheetStateController {

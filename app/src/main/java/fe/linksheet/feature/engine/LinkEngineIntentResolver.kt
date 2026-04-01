@@ -16,7 +16,6 @@ import app.linksheet.feature.engine.core.fetcher.ContextResultId
 import app.linksheet.feature.engine.core.fetcher.preview.toUnfurlResult
 import app.linksheet.feature.engine.core.fetcher.toFetchResult
 import app.linksheet.feature.libredirect.database.entity.LibRedirectDefault
-import fe.composekit.lifecycle.network.core.NetworkStateService
 import fe.kotlin.extension.iterable.mapToSet
 import fe.linksheet.extension.toAndroidUri
 import fe.linksheet.extension.toStdUrl

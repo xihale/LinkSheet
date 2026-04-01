@@ -1,7 +1,7 @@
 package fe.linksheet.debug.activity
 
-import androidx.compose.material3.fix.ModalBottomSheet
-import androidx.compose.material3.fix.rememberModalBottomSheetState
+import app.linksheet.core.ui.sheet.StandardBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -45,14 +45,13 @@ class DebugActivity : ComponentActivity(), KoinComponent {
             scope.launch {
                 delay(2000)
                 loading = false
-                state.expand()
             }
         }) {
             Text(text = "Show")
         }
 
         if (show) {
-            ModalBottomSheet(
+            StandardBottomSheet(
                 sheetState = state,
                 onDismissRequest = {
                     show = false

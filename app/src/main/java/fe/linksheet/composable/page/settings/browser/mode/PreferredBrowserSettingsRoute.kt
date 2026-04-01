@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.browser.mode
 
 import androidx.compose.material.icons.Icons
@@ -12,11 +13,7 @@ import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.ListItemFilledIconButton
-import fe.composekit.preference.collectAsStateWithLifecycle
-import fe.composekit.route.Route
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import fe.linksheet.composable.component.FilterChipValue
 import fe.linksheet.composable.component.FilterChips

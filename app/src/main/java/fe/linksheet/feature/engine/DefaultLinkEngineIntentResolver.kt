@@ -20,7 +20,6 @@ import app.linksheet.feature.engine.core.resolver.followredirects.FollowRedirect
 import app.linksheet.feature.engine.core.resolver.followredirects.FollowRedirectsLocalSource
 import app.linksheet.feature.engine.database.repository.CacheRepository
 import app.linksheet.feature.libredirect.LibRedirectResolver
-import fe.composekit.lifecycle.network.core.NetworkStateService
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.PreferredAppRepository
 import fe.linksheet.module.repository.whitelisted.WhitelistedInAppBrowsersRepository

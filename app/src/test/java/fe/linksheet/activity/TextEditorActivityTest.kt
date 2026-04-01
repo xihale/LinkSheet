@@ -6,7 +6,6 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import fe.composekit.core.putEnumExtra
 import fe.linksheet.testlib.core.ActivityInvoker
 import fe.linksheet.testlib.core.BaseUnitTest
 import fe.linksheet.testlib.core.JunitTest

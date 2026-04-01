@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.ui
 
 import android.app.Activity
@@ -22,7 +23,7 @@ import fe.android.preference.helper.EnumTypeMapper
 import fe.android.span.helper.LinkAnnotationStyle
 import fe.android.span.helper.LocalLinkAnnotationStyle
 import fe.android.span.helper.LocalLinkTags
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.activity.BaseComponentActivity
 import app.linksheet.compose.debug.DebugPreferenceProvider
 import app.linksheet.compose.debug.LocalUiDebug
