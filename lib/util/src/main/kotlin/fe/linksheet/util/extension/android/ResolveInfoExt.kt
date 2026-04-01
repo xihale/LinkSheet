@@ -1,11 +1,18 @@
 package fe.linksheet.util.extension.android
 
+import android.content.ComponentName
 import android.content.pm.ResolveInfo
-import fe.composekit.extension.componentName
+import android.content.pm.ActivityInfo
 
-@Deprecated("Should probably be replaced with toComponentNameKeyedMap", replaceWith = ReplaceWith("this.toComponentNameKeyedMap()"))
-fun Iterable<ResolveInfo>.toPackageKeyedMap() = associateBy { it.activityInfo.packageName }
+/**
+ * Android extension shims.
+ */
 
-fun Iterable<ResolveInfo>.toComponentNameKeyedMap(): Map<String, ResolveInfo> {
-    return associateBy { it.activityInfo.componentName.flattenToString() }
-}
+public val ResolveInfo.componentName: ComponentName
+    get() = ComponentName(this.activityInfo.packageName, this.activityInfo.name)
+
+public val ActivityInfo.componentName: ComponentName
+    get() = ComponentName(this.packageName, this.name)
+
+public val ResolveInfo.packageName: String
+    get() = this.activityInfo.packageName

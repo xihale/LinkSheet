@@ -1,10 +1,10 @@
 package fe.linksheet.util.extension.android
 
 import android.app.Activity
-import android.content.Intent
 import fe.std.result.IResult
-import fe.std.result.tryCatch
+import fe.std.result.Result
 
-fun Activity.tryStartActivity(intent: Intent): IResult<Unit> {
-    return tryCatch { startActivity(intent) }
+public fun Activity.safeFinish(): IResult<Unit> {
+    finish()
+    return Result.success(Unit)
 }

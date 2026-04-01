@@ -1,7 +1,12 @@
 package app.linksheet.api.preference
 
-import android.content.Context
-import fe.composekit.preference.FlowPreferenceRepository
+import kotlinx.coroutines.flow.Flow
 
-abstract class AppPreferenceRepository(context: Context) : FlowPreferenceRepository(context) {
+/**
+ * Standard interface for preference repositories.
+ * Replaces legacy ComposeKit's FlowPreferenceRepository.
+ */
+interface AppPreferenceRepository {
+    fun <T> get(key: String, defaultValue: T): Flow<T>
+    suspend fun <T> set(key: String, value: T)
 }
