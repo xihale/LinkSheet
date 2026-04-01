@@ -15,7 +15,6 @@ import androidx.test.espresso.matcher.ViewMatchers
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import de.mannodermaus.junit5.compose.createAndroidComposeExtension
-import fe.composekit.core.putEnumExtra
 import fe.linksheet.composable.page.edit.EDITOR_APP_BAR_CANCEL_TEST_TAG
 import fe.linksheet.composable.page.edit.EDITOR_APP_BAR_DONE_TEST_TAG
 import fe.linksheet.testlib.core.ActivityInvoker
