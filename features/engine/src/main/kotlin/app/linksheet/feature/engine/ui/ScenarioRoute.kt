@@ -24,10 +24,6 @@ import app.linksheet.feature.engine.eval.ExpressionStringifier
 import app.linksheet.feature.engine.viewmodel.ScenarioViewModel
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.DefaultContent.Companion.text
-import fe.composekit.component.PreviewThemeNew
-import fe.composekit.component.list.column.shape.ClickableShapeListItem
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.layout.column.group
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import kotlin.uuid.ExperimentalUuidApi

@@ -8,7 +8,6 @@ import android.os.UserManager
 import androidx.core.net.toUri
 import app.linksheet.api.RefineWrapper
 import app.linksheet.api.WrappedUserHandleHidden
-import fe.composekit.core.AndroidVersion
 
 @Suppress("FunctionName")
 internal fun AndroidProfileSwitcher(

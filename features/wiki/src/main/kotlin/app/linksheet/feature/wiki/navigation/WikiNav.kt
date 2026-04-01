@@ -10,8 +10,6 @@ import androidx.navigation.NavHostController
 import app.linksheet.compose.util.animatedComposable
 import app.linksheet.feature.wiki.core.WikiPage
 import app.linksheet.feature.wiki.ui.MarkdownViewerWrapper
-import fe.composekit.route.Nav
-import fe.composekit.route.Route
 import kotlinx.serialization.Serializable
 import kotlin.uuid.ExperimentalUuidApi
 

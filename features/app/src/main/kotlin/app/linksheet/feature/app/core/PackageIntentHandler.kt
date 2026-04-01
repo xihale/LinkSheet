@@ -6,7 +6,6 @@ import android.content.pm.ResolveInfo
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
 import app.linksheet.feature.app.extension.activityDescriptor
-import fe.composekit.extension.packageName
 import fe.linksheet.util.ResolveInfoFlags
 
 interface PackageIntentHandler {

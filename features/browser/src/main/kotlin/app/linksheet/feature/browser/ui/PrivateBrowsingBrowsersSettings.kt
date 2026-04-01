@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.browser.ui
 
 import androidx.compose.material3.Text
@@ -14,10 +15,6 @@ import app.linksheet.feature.browser.R
 import app.linksheet.feature.browser.viewmodel.PrivateBrowsingBrowserSettingsViewModel
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.list.column.SaneLazyColumnLayout
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.CheckboxListItem
-import fe.composekit.component.page.SaneSettingsScaffold
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

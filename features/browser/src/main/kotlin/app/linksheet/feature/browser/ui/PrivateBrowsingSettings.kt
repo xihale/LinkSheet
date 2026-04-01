@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.browser.ui
 
 import androidx.compose.runtime.Composable
@@ -11,12 +12,7 @@ import app.linksheet.feature.browser.R
 import app.linksheet.feature.browser.navigation.PrivateBrowserBrowserRoute
 import app.linksheet.feature.browser.viewmodel.PrivateBrowsingSettingsViewModel
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.column.shape.SelectableShapeListItem
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.SwitchListItem
-import fe.composekit.preference.collectAsStateWithLifecycle
-import fe.composekit.route.Route
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
 

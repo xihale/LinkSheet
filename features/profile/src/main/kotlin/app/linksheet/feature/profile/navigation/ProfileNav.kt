@@ -7,8 +7,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import app.linksheet.compose.util.animatedComposable
 import app.linksheet.feature.profile.ui.ProfileSwitchingSettings
-import fe.composekit.route.Nav
-import fe.composekit.route.Route
 import kotlinx.serialization.Serializable
 import kotlin.uuid.ExperimentalUuidApi
 

@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.libredirect.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,11 +10,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.android.compose.extension.enabled
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.toEnabledContentSet
-import fe.composekit.component.list.item.type.RadioButtonListItem
-import fe.composekit.component.list.item.type.SwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import app.linksheet.feature.libredirect.database.entity.LibRedirectDefault
 import app.linksheet.feature.libredirect.FrontendState

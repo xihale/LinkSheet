@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.shizuku.ui
 
 import androidx.compose.runtime.Composable
@@ -7,12 +8,7 @@ import app.linksheet.compose.preview.PreviewTheme
 import app.linksheet.feature.shizuku.R
 import app.linksheet.feature.shizuku.ShizukuStatus
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.SwitchListItem
-import fe.composekit.layout.column.SaneLazyListScope
-import fe.composekit.preference.BooleanVmPref
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 internal fun SaneLazyListScope.content(
     enableShizukuPref: BooleanVmPref,

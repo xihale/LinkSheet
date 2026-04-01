@@ -1,34 +1,15 @@
 package app.linksheet.feature.app.core
 
+import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
-import android.content.pm.ResolveInfo
-import fe.android.compose.icon.BitmapIconPainter
-import fe.composekit.extension.info
+import android.content.pm.PackageManager
 
-class AppInfoCreator(
-    private val packageLabelService: PackageLabelService,
-    private val packageLauncherService: PackageLauncherService,
-    private val packageIconLoader: PackageIconLoader,
-) {
-    fun toActivityAppInfo(resolveInfo: ResolveInfo, installTime: Long?): ActivityAppInfo {
-        val info = resolveInfo.info
-
-        return ActivityAppInfo(
-            appInfo = toAppInfo(info.applicationInfo, installTime),
-            componentInfo = info,
-        )
+public class AppInfoCreator(private val packageManager: PackageManager) {
+    public fun create(info: ActivityInfo): ActivityAppInfo {
+        return ActivityAppInfo(info, info.loadLabel(packageManager).toString())
     }
-    fun toAppInfo(applicationInfo: ApplicationInfo, installTime: Long?): AppInfo {
-        val launcher = packageLauncherService.getLauncherOrNull(applicationInfo.packageName)
-        val label = packageLabelService.findBestLabel(applicationInfo, launcher)
-        val icon = packageIconLoader.loadApplicationIcon(applicationInfo)
 
-        return AppInfo(
-            packageName = applicationInfo.packageName,
-            label = label,
-            icon = BitmapIconPainter.drawable(icon),
-            flags = applicationInfo.flags,
-            installTime = installTime
-        )
+    public fun create(info: ApplicationInfo): ApplicationAppInfo {
+        return ApplicationAppInfo(info, info.loadLabel(packageManager).toString())
     }
 }

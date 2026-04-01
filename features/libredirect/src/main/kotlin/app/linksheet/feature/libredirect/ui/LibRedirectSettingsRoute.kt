@@ -23,9 +23,6 @@ import fe.android.compose.text.AnnotatedStringResourceContent.Companion.annotate
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
-import fe.composekit.route.Route
 import fe.linksheet.web.HostUtil
 import org.koin.androidx.compose.koinViewModel
 

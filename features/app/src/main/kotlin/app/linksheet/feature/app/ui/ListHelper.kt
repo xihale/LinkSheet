@@ -8,7 +8,6 @@ import app.linksheet.compose.extension.listHelper
 import app.linksheet.compose.util.ListState
 import app.linksheet.feature.app.R
 import app.linksheet.feature.app.core.IAppInfo
-import fe.composekit.layout.column.SaneLazyListScope
 
 
 fun <T : IAppInfo> SaneLazyListScope.appList(

@@ -10,9 +10,6 @@ import app.linksheet.feature.shizuku.R
 import app.linksheet.feature.shizuku.ui.ShizukuRoute
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.route.NavSubGraph
-import fe.composekit.route.Route
-import fe.composekit.route.RouteNavItemNew
 import kotlinx.serialization.Serializable
 
 

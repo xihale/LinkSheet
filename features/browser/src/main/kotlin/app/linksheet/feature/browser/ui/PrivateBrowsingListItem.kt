@@ -8,11 +8,6 @@ import app.linksheet.feature.browser.R
 import app.linksheet.feature.browser.navigation.PrivateBrowsingRoute
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.preference.helper.Preference
-import fe.composekit.component.CommonDefaults
-import fe.composekit.component.shape.CustomShapeDefaults
-import fe.composekit.layout.column.SaneLazyColumnGroupScope
-import fe.composekit.preference.ViewModelStatePreference
-import fe.composekit.route.Route
 
 fun SaneLazyColumnGroupScope.privateBrowsingListItem(
     statePreference: ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>,

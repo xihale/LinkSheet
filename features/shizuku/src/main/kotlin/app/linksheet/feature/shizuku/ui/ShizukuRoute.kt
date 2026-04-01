@@ -32,13 +32,6 @@ import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
 import fe.android.compose.text.TextOptions
-import fe.composekit.component.ContentType
-import fe.composekit.component.PreviewThemeNew
-import fe.composekit.component.card.AlertCard
-import fe.composekit.component.card.AlertCardDefaults
-import fe.composekit.layout.column.SaneLazyListScope
-import fe.composekit.lifecycle.collectRefreshableAsStateWithLifecycle
-import fe.composekit.preference.FakePreferences
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

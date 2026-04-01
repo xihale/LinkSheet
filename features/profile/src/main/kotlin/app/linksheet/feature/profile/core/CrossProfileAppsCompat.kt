@@ -8,7 +8,6 @@ import android.content.pm.CrossProfileApps
 import android.graphics.drawable.Drawable
 import android.os.UserHandle
 import androidx.annotation.RequiresApi
-import fe.composekit.core.AndroidVersion
 import fe.linksheet.util.extension.android.getSystemServiceOrThrow
 
 interface CrossProfileAppsCompat {

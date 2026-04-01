@@ -2,7 +2,6 @@ package app.linksheet.feature.app.core
 
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
-import fe.composekit.extension.componentName
 
 object PackageIdHelper {
     private fun getShortClassName(appPackage: String, clazz: String): String {

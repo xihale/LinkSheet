@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.wiki.ui
 
 import androidx.compose.foundation.layout.Box
@@ -26,9 +27,6 @@ import app.linksheet.compose.preview.PreviewTheme
 import app.linksheet.feature.wiki.viewmodel.MarkdownViewModel
 import dev.jeziellago.compose.markdowntext.MarkdownText
 import fe.android.span.helper.LocalLinkAnnotationStyle
-import fe.composekit.component.ContentType
-import fe.composekit.component.list.column.SaneLazyColumnLayout
-import fe.composekit.component.page.SaneSettingsScaffold
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

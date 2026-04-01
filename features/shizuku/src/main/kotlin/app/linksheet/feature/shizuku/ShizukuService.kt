@@ -9,7 +9,6 @@ import android.content.pm.getApplicationInfoCompat
 import app.linksheet.api.eventbus.BroadcastEventBus
 import app.linksheet.api.eventbus.IntentEventHandler
 import app.linksheet.feature.shizuku.viewmodel.ShizukuSettingsViewModel
-import fe.composekit.intent.buildIntent
 import fe.droidkit.koin.getPackageManager
 import fe.linksheet.util.ApplicationInfoFlags
 import fe.linksheet.util.IntentFilters

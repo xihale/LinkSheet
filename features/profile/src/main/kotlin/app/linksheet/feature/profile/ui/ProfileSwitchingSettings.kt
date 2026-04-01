@@ -1,3 +1,4 @@
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.profile.ui
 
 import android.app.Activity
@@ -28,14 +29,7 @@ import app.linksheet.feature.profile.viewmodel.ProfileSwitchingSettingsViewModel
 import fe.android.compose.icon.BitmapIconPainter.Companion.bitmap
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import fe.composekit.component.ContentType
-import fe.composekit.component.card.AlertCard
-import fe.composekit.component.icon.IconOffset
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
-import fe.composekit.component.list.item.type.SwitchListItem
-import fe.composekit.layout.column.group
-import fe.composekit.preference.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
 @RequiresApi(Build.VERSION_CODES.P)

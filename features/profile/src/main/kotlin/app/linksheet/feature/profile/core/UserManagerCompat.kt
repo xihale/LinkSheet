@@ -2,7 +2,6 @@ package app.linksheet.feature.profile.core
 
 import android.os.UserHandle
 import android.os.UserManager
-import fe.composekit.core.AndroidVersion
 
 interface UserManagerCompat {
     fun isManagedProfile(): Boolean = false

@@ -41,11 +41,6 @@ import fe.android.compose.feedback.FeedbackType
 import fe.android.compose.feedback.LocalHapticFeedbackInteraction
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.DefaultContent.Companion.text
-import fe.composekit.component.CommonDefaults
-import fe.composekit.component.PreviewThemeNew
-import fe.composekit.component.list.column.shape.ClickableShapeListItem
-import fe.composekit.component.shape.CustomShapeDefaults
-import fe.composekit.route.Route
 import org.koin.androidx.compose.koinViewModel
 import sh.calvin.reorderable.ReorderableCollectionItemScope
 import sh.calvin.reorderable.ReorderableItem
