@@ -6,7 +6,6 @@ import fe.buildlogic.common.extension.addCompilerOptions
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 group = "fe.linksheet.testlib.core"

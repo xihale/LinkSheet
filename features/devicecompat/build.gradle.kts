@@ -5,10 +5,8 @@ import fe.buildlogic.Version
 
 plugins {
     kotlin("android")
-    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -33,7 +31,6 @@ dependencies {
     implementation(AndroidX.core.ktx)
     implementation(Koin.android)
     implementation(Koin.compose)
-    implementation(Grrfe.std.core)
     implementation(_1fexd.composeKit.core)
     implementation(_1fexd.composeKit.koin)
     implementation(_1fexd.composeKit.preference.core)
@@ -53,6 +50,5 @@ dependencies {
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
     testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

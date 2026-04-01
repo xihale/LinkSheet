@@ -1,28 +1,17 @@
-import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-
 plugins {
+    kotlin("android")
     id("com.android.library")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
-group = "fe.linksheet.hiddenapi"
 
 android {
-    namespace = group.toString()
-    compileSdk = AndroidSdk.COMPILE_SDK
-
+    namespace = "app.linksheet.hiddenapi"
+    compileSdk = 35
     defaultConfig {
-        minSdk = AndroidSdk.MIN_SDK
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        minSdk = 26
     }
 }
 
 dependencies {
-    annotationProcessor("dev.rikka.tools.refine:annotation-processor:_")
-    compileOnly("dev.rikka.tools.refine:annotation:_")
-    compileOnly("org.jetbrains:annotations:_")
-    compileOnly(AndroidX.annotation)
+    compileOnly("androidx.annotation:annotation:1.9.1")
+    implementation("dev.rikka.tools.refine:runtime:4.0.0")
 }

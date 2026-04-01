@@ -7,10 +7,8 @@ import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
-    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -62,9 +60,6 @@ dependencies {
     implementation(Koin.compose)
     implementation(AndroidX.room.common)
 
-    implementation(Grrfe.std.core)
-    implementation(Grrfe.std.coroutines)
-    implementation(Grrfe.std.result.core)
 
     implementation("dev.rikka.shizuku:api:_")
     implementation("dev.rikka.shizuku:provider:_")
@@ -76,7 +71,6 @@ dependencies {
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
     testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
     debugImplementation(AndroidX.compose.ui.tooling)
 }

@@ -1,29 +1,17 @@
-import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.build.dependencies.Grrfe
-import fe.build.dependencies._1fexd
-import fe.buildlogic.Version
-
 plugins {
-    id("com.android.library")
     kotlin("android")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
+    id("com.android.library")
 }
 
 android {
-    namespace = "app.linksheet.lib.log"
-    compileSdk = AndroidSdk.COMPILE_SDK
-
+    namespace = "app.linksheet.log"
+    compileSdk = 35
     defaultConfig {
-        minSdk = AndroidSdk.MIN_SDK
-    }
-
-    kotlin {
-        jvmToolchain(Version.JVM)
+        minSdk = 26
     }
 }
 
 dependencies {
-    implementation(Grrfe.std.core)
-    implementation(_1fexd.composeKit.core)
-    implementation(AndroidX.core.ktx)
+    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("org.mozilla.components:support-utils:145.0b9")
 }

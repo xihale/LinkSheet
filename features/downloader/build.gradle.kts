@@ -1,16 +1,12 @@
-
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.build.dependencies.Grrfe
 import fe.buildlogic.Version
 import fe.buildlogic.common.OptIn
 import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
-    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -32,17 +28,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":api"))
     implementation(project(":common"))
     implementation(project(":util"))
-    implementation(project(":api"))
 
-    implementation(Grrfe.std.core)
-    implementation(Grrfe.std.uri)
-    implementation(Grrfe.httpkt.core)
-    implementation(Grrfe.httpkt.core2.core)
     implementation(Koin.android)
     implementation(Koin.compose)
     implementation(AndroidX.core.ktx)
+    
+    implementation(platform("androidx.compose:compose-bom-alpha:_"))
+    implementation(AndroidX.compose.runtime)
+    implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.material3)
 
     implementation(JetBrains.ktor.client.core)
     implementation(JetBrains.ktor.client.gson)
@@ -55,13 +52,8 @@ dependencies {
     implementation(JetBrains.ktor.plugins.serialization.gson)
     testImplementation(JetBrains.ktor.client.mock)
 
-
-    testImplementation(Grrfe.httpkt.core2.test)
     testImplementation(Testing.robolectric)
     testImplementation(KotlinX.coroutines.test)
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
-    testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
-    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

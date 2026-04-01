@@ -7,12 +7,9 @@ import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
-    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("androidx.room")
-    id("com.google.devtools.ksp")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -47,14 +44,13 @@ dependencies {
     implementation(project(":feature-app"))
     implementation(project(":feature-browser"))
     implementation(project(":feature-downloader"))
-    implementation(project(":feature-libredirect"))
+     // implementation(project(":feature-libredirect"))
     implementation(project(":integration-clearurl"))
     implementation(project(":integration-embed-resolve"))
     implementation(project(":integration-amp2html"))
     implementation(project(":sdk-common"))
     implementation(AndroidX.room.runtime)
     implementation(AndroidX.room.ktx)
-    ksp(AndroidX.room.compiler)
 
 
     implementation("sh.calvin.reorderable:reorderable:_")
@@ -75,9 +71,7 @@ dependencies {
     implementation(_1fexd.composeKit.core)
     implementation(AndroidX.compose.material.icons.core)
     implementation(AndroidX.compose.material.icons.extended)
-    implementation(Grrfe.std.core)
     implementation(Grrfe.std.time.core)
-    implementation(Grrfe.std.uri)
     implementation(Grrfe.httpkt.core)
     implementation(Grrfe.gsonExt.core)
     implementation(Koin.android)
@@ -110,6 +104,5 @@ dependencies {
     testImplementation(KotlinX.coroutines.test)
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

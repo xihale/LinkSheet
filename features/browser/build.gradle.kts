@@ -5,12 +5,9 @@ import fe.buildlogic.Version
 
 plugins {
     kotlin("android")
-    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("androidx.room")
-    id("com.google.devtools.ksp")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -40,7 +37,6 @@ dependencies {
 
     implementation(AndroidX.room.runtime)
     implementation(AndroidX.room.ktx)
-    ksp(AndroidX.room.compiler)
 
     implementation(AndroidX.core.ktx)
     implementation(Koin.android)
@@ -62,6 +58,5 @@ dependencies {
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
     testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

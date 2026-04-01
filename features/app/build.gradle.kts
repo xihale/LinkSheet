@@ -1,61 +1,31 @@
-import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.build.dependencies.Grrfe
-import fe.build.dependencies._1fexd
-import fe.buildlogic.Version
-import fe.buildlogic.common.CompilerOption
-import fe.buildlogic.common.PluginOption
-import fe.buildlogic.common.extension.addCompilerOptions
-import fe.buildlogic.common.extension.addPluginOptions
-
 plugins {
     kotlin("android")
     kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("kotlin-parcelize")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
     namespace = "app.linksheet.feature.app"
-    compileSdk = AndroidSdk.COMPILE_SDK
-
+    compileSdk = 35
     defaultConfig {
-        minSdk = AndroidSdk.MIN_SDK
+        minSdk = 26
     }
-
-    kotlin {
-        jvmToolchain(Version.JVM)
-        addCompilerOptions(CompilerOption.WhenGuards)
-        addPluginOptions(PluginOption.Parcelize.ExperimentalCodeGeneration to true)
+    buildFeatures {
+        compose = true
     }
 }
 
 dependencies {
+    implementation(project(":api"))
     implementation(project(":common"))
     implementation(project(":compose"))
     implementation(project(":util"))
-    implementation(project(":test-fake"))
-    compileOnly(project(":hidden-api"))
-    implementation(AndroidX.compose.ui)
-    implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(AndroidX.compose.foundation)
-
-    implementation(Grrfe.std.core)
-    implementation(Grrfe.std.result.core)
-
-    implementation(_1fexd.composeKit.core)
-    implementation(_1fexd.composeKit.compose.core)
-    implementation(_1fexd.composeKit.compose.component)
-
-    implementation(Grrfe.gsonExt.core)
-    implementation("io.github.reandroid:ARSCLib:_")
-    implementation(AndroidX.core.ktx)
-
-    testImplementation(Testing.robolectric)
-    testImplementation(AndroidX.test.ext.junit.ktx)
-    testImplementation(project(":test-core"))
-    testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
-    testImplementation("com.willowtreeapps.assertk:assertk:_")
+    
+    implementation("androidx.compose.ui:ui:1.11.0-alpha01")
+    implementation("androidx.compose.foundation:foundation:1.11.0-alpha01")
+    implementation("androidx.compose.material3:material3:1.5.0-alpha10")
+    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("io.github.reandroid:ARSCLib:1.3.8")
 }

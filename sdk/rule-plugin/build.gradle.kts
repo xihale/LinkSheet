@@ -7,7 +7,6 @@ import fe.buildlogic.Version
 plugins {
     kotlin("android")
     id("com.android.library")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 android {
@@ -30,14 +29,11 @@ dependencies {
 
     api(KotlinX.coroutines.android)
     implementation(Koin.android)
-    implementation(Grrfe.std.result.core)
-    implementation(Grrfe.std.uri)
     implementation(AndroidX.core.ktx)
 
     testImplementation(Testing.robolectric)
     testImplementation(KotlinX.coroutines.test)
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(Grrfe.std.test)
-    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

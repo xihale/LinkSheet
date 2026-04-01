@@ -1,22 +1,16 @@
-import fe.buildlogic.Version
-
 plugins {
-    id("com.android.library")
     kotlin("android")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
+    id("com.android.library")
 }
 
-group = "fe.linksheet.config"
-
 android {
-    namespace = group.toString()
-    compileSdk = Version.COMPILE_SDK
-
+    namespace = "app.linksheet.config"
+    compileSdk = 35
     defaultConfig {
-        minSdk = Version.MIN_SDK
+        minSdk = 26
     }
 }
 
-kotlin {
-    jvmToolchain(Version.JVM)
+dependencies {
+    implementation("androidx.core:core-ktx:1.17.0")
 }

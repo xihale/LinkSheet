@@ -4,7 +4,6 @@ import fe.buildlogic.Version
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("com.gitlab.grrfe.new-build-logic-plugin")
 }
 
 group = "app.linksheet.testlib.koin"
