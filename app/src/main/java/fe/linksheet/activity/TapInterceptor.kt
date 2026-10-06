@@ -2,24 +2,24 @@ package fe.linksheet.activity
 
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.SheetState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerEvent
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.PointerInputScope
 import androidx.compose.ui.input.pointer.pointerInput
+import fe.linksheet.activity.bottomsheet.compat.CompatSheetState
 import kotlinx.coroutines.coroutineScope
 
-@OptIn(ExperimentalMaterial3Api::class)
-fun Modifier.interceptTaps(state: SheetState, interceptAccidentalTaps: Boolean): Modifier {
+
+fun Modifier.interceptTaps(state: CompatSheetState, interceptAccidentalTaps: Boolean): Modifier {
     if (!interceptAccidentalTaps) return this
 
     return pointerInput(Unit) {
-        interceptTap { true } // Simplified: animations are fast in M3
+        interceptTap { !state.isAnimationRunning() }
     }
 }
 
+// https://stackoverflow.com/a/76168038
 private suspend fun PointerInputScope.interceptTap(
     pass: PointerEventPass = PointerEventPass.Initial,
     shouldCancel: (PointerEvent) -> Boolean,
@@ -35,8 +35,8 @@ private suspend fun PointerInputScope.interceptTap(
 
             val currentTime = System.currentTimeMillis()
 
-            if (event.changes.size != 1) break
-            if (currentTime - downTime >= tapTimeout) break
+            if (event.changes.size != 1) break // More than one event: not a tap
+            if (currentTime - downTime >= tapTimeout) break // Too slow: not a tap
 
             val change = event.changes[0]
 

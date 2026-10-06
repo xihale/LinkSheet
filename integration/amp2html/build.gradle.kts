@@ -1,16 +1,20 @@
+import fe.build.dependencies.Grrfe
+
 plugins {
-    kotlin("android")
-    id("com.android.library")
+    kotlin("jvm")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
-android {
-    namespace = "fe.linksheet.integration.amp2html"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 26
-    }
+kotlin {
+    explicitApi()
 }
 
 dependencies {
-    api(project(":api"))
+    api("org.jsoup:jsoup:_")
+
+    testImplementation(Grrfe.httpkt.core)
+    testImplementation(kotlin("test"))
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
+    testImplementation(Grrfe.std.test)
 }
+

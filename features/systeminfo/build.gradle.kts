@@ -1,14 +1,19 @@
+
+import com.gitlab.grrfe.gradlebuild.Version
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.buildlogic.Version
+import fe.build.dependencies.Grrfe
+import fe.build.dependencies._1fexd
 
 plugins {
+    kotlin("plugin.serialization")
     id("com.android.library")
-    kotlin("android")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
     namespace = "fe.linksheet.feature.systeminfo"
-    compileSdk = AndroidSdk.COMPILE_SDK
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
 
     defaultConfig {
         minSdk = AndroidSdk.MIN_SDK
@@ -20,13 +25,27 @@ android {
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":util"))
-    compileOnly(project(":hidden-api"))
+    implementation(project(":lib-api"))
+    implementation(project(":lib-util"))
+    compileOnly(project(":lib-hidden-api"))
 
-    implementation("com.google.code.gson:gson:_")
+    implementation(Grrfe.std.core)
+    implementation(Grrfe.std.time.java)
+    implementation(Grrfe.std.process.core)
+
+    implementation(platform(_1fexd.composeKit.bom))
+    implementation(_1fexd.composeKit.core)
+    implementation(_1fexd.composeKit.process)
+
+    implementation(KotlinX.serialization.core)
+
+    implementation(Grrfe.gsonExt.core)
+
     implementation(AndroidX.core.ktx)
 
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
+    testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.result.assert)
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

@@ -2,7 +2,7 @@ package app.linksheet.feature.app.core
 
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
-import fe.linksheet.util.extension.android.componentName
+import fe.composekit.extension.componentName
 
 object PackageIdHelper {
     private fun getShortClassName(appPackage: String, clazz: String): String {
@@ -29,7 +29,7 @@ object PackageIdHelper {
 
     fun getDescriptor(activityAppInfo: ActivityAppInfo): String {
         val componentName = activityAppInfo.componentName
-        val appPackage = activityAppInfo.info.applicationInfo.packageName
+        val appPackage = activityAppInfo.appInfo.packageName
         return createDescriptor(componentName, appPackage, "")
     }
 }

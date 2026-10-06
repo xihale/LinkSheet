@@ -14,10 +14,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.os.bundleOf
 import app.linksheet.feature.app.core.AppInfo
 import app.linksheet.testing.fake.PackageInfoFakes
 import app.linksheet.testing.fake.toAppInfo
+import fe.composekit.component.PreviewThemeNew
+import fe.composekit.extension.getBundleBinder
+import fe.composekit.extension.getParcelableExtraCompat
 import fe.linksheet.BuildConfig
 import fe.linksheet.composable.dialog.AppHostDialogResult
 import fe.linksheet.composable.dialog.AppInfoDialogData
@@ -52,7 +54,9 @@ class SelectDomainsConfirmationActivity : BaseComponentActivity() {
             intent.putExtra(EXTRA_CALLING_PACKAGE, callingPackage)
             intent.putExtra(EXTRA_DOMAINS, domains)
             intent.putExtra(EXTRA_CALLING_COMPONENT, callingComponent)
-            intent.putExtra(EXTRA_CALLBACK, bundleOf(EXTRA_CALLBACK to callback?.asBinder()))
+            intent.putExtra(EXTRA_CALLBACK, Bundle().apply {
+                putBinder(EXTRA_CALLBACK, callback?.asBinder())
+            })
             intent.putExtra(EXTRA_MESSENGER, messenger)
             intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -118,8 +122,9 @@ private fun AppPageWrapper(
             appInfo = appInfo,
             domains = supportedHosts.intersect(domains.toSet()),
             onClose = { (appInfo, hostState) ->
-                viewModel.handler.updateHostState(appInfo, hostState)
-                onClose()
+                viewModel.updateHostState(appInfo, hostState).invokeOnCompletion {
+                    onClose()
+                }
             },
             onDismiss = onDismiss
         )

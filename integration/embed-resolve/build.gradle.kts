@@ -1,19 +1,23 @@
+import fe.build.dependencies.Grrfe
+
 plugins {
-    kotlin("android")
-    id("com.android.library")
+    kotlin("jvm")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
-android {
-    namespace = "fe.linksheet.integration.embedresolve"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 26
-    }
+kotlin {
+    explicitApi()
 }
 
 dependencies {
-    api(project(":api"))
-    api(platform("com.gitlab.grrfe.gson-ext:platform:17.1.0-gson2-koin4"))
-    implementation("com.gitlab.grrfe.gson-ext:core")
-    implementation("com.google.code.gson:gson:2.13.2")
+    implementation("org.jetbrains:annotations:_")
+
+    api(Grrfe.gsonExt.core)
+    api(Grrfe.std.result.core)
+    api(Grrfe.std.uri)
+    api(Grrfe.signify)
+
+    testImplementation(kotlin("test"))
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
+    testImplementation(Grrfe.std.test)
 }

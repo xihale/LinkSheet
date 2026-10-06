@@ -1,28 +1,34 @@
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+import fe.build.dependencies.Grrfe
+import fe.build.dependencies._1fexd
+
 plugins {
-    kotlin("android")
+    kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
-    namespace = "app.linksheet.api"
-    compileSdk = 36
+    namespace = "app.linksheet.lib.api"
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
+    }
+
+    kotlin {
+        jvmToolchain(Version.JVM)
     }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-    implementation("io.insert-koin:koin-core:4.2.0-beta2")
-    implementation("androidx.room:room-runtime:2.8.4")
-    implementation("androidx.core:core-ktx:1.17.0")
-
-    api(platform("com.github.1fexd.composekit:platform:0.0.86"))
-    api("com.github.1fexd.composekit:preference-core")
-    api("com.github.1fexd.composekit:preference-compose-core2")
-
-    api(platform("com.gitlab.grrfe.kotlin-ext:platform:0.0.148"))
-    api("com.gitlab.grrfe.kotlin-ext:result-core")
-    api("com.gitlab.grrfe.kotlin-ext:uri")
+    implementation(_1fexd.composeKit.preference.compose.core2)
+    implementation("androidx.room3:room3-common:_")
+    implementation("androidx.room3:room3-sqlite-wrapper:_")
+    implementation(AndroidX.sqlite.ktx)
+    implementation(AndroidX.core.ktx)
+    implementation(Koin.android)
+    implementation(Grrfe.gsonExt.core)
 }

@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.dp
 import app.linksheet.feature.wiki.navigation.MarkdownViewerRoute
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
+import fe.composekit.component.ContentType
+import fe.composekit.component.card.AlertCard
+import fe.composekit.route.Route
 import fe.linksheet.R
 import fe.linksheet.composable.ui.PreviewTheme
 import fe.linksheet.util.LinkSheet

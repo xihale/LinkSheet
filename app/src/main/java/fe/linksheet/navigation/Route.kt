@@ -2,6 +2,7 @@ package fe.linksheet.navigation
 
 
 import androidx.annotation.Keep
+import fe.composekit.route.Route
 import fe.linksheet.module.viewmodel.PreferredBrowserViewModel
 import kotlinx.serialization.Serializable
 
@@ -58,7 +59,6 @@ const val loadDumpedPreferences = "log_dumped_reference_settings_route"
 const val linksSettingsRoute = "link_settings_route"
 
 const val followRedirectsSettingsRoute = "follow_redirects_settings_route"
-const val downloaderSettingsRoute = "downloader_settings_route"
 const val amp2HtmlSettingsRoute = "amp2html_settings_route"
 
 
@@ -95,10 +95,6 @@ data class ExperimentRoute(
         val Empty = ExperimentRoute()
     }
 }
-
-@Keep
-@Serializable
-data object ExportImportRoute : Route
 
 @Keep
 @Serializable

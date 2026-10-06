@@ -1,5 +1,4 @@
 package fe.linksheet.composable.page.settings.language
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,6 +23,11 @@ import fe.android.compose.feedback.wrap
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.StringResourceContent.Companion.textContent
+import fe.composekit.component.dialog.DialogDefaults
+import fe.composekit.component.dialog.SaneAlertDialog
+import fe.composekit.component.dialog.SaneAlertDialogTextButton
+import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.type.RadioButtonListItem
 import fe.linksheet.R
 import app.linksheet.compose.theme.DialogTitleStyle
 import fe.linksheet.module.language.DisplayLocaleItem
@@ -31,6 +35,7 @@ import fe.linksheet.module.language.LocaleItem
 import fe.linksheet.module.viewmodel.LanguageSettingsViewModel
 import org.koin.compose.viewmodel.koinViewModel
 import java.util.*
+import app.linksheet.compose.R as CommonR
 
 @Composable
 fun rememberLanguageDialog(
@@ -110,7 +115,7 @@ private fun LanguageDialog(
         },
         dismissButton = {
             SaneAlertDialogTextButton(
-                content = textContent(R.string.cancel),
+                content = textContent(CommonR.string.generic__button_text_cancel),
                 onClick = onDismiss
             )
         },

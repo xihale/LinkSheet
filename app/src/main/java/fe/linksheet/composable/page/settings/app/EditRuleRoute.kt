@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import fe.android.compose.text.DefaultContent.Companion.text
+import fe.composekit.component.ContentType
+import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
 import fe.linksheet.R
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 

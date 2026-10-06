@@ -1,20 +1,43 @@
+import fe.build.dependencies.Grrfe
+import fe.buildsrc.clearurls.MetadataGeneratorTask
+import fe.buildsrc.clearurls.UpdateRulesTask
+
 plugins {
-    kotlin("android")
-    id("com.android.library")
+    kotlin("jvm")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
-android {
-    namespace = "fe.linksheet.integration.clearurl"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 26
-    }
+kotlin {
+    explicitApi()
 }
 
 dependencies {
-    api(project(":api"))
-    api(platform("com.gitlab.grrfe.gson-ext:platform:17.1.0-gson2-koin4"))
-    implementation("com.gitlab.grrfe.gson-ext:core")
-    implementation("com.gitlab.grrfe:signifykt:0.0.7")
-    implementation("com.google.code.gson:gson:2.13.2")
+    api(Grrfe.gsonExt.core)
+
+    api(Grrfe.std.result.core)
+    api(Grrfe.std.uri)
+    api(Grrfe.signify)
+
+    testImplementation(kotlin("test"))
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
+    testImplementation(Grrfe.std.test)
+}
+
+
+val generatedSrcDir: File = layout.buildDirectory.dir("generated/sources/metadata/main/java").get().asFile
+
+val main by sourceSets
+main.java.srcDir(generatedSrcDir)
+
+val generateMetadata = tasks.register<MetadataGeneratorTask>("generateMetadata") {
+    group = "build"
+    dir = generatedSrcDir
+}
+
+val assemble by tasks
+assemble.dependsOn(generateMetadata)
+
+val updateRules = tasks.register<UpdateRulesTask>("updateRules") {
+    file = "src/main/resources/fe/clearurlskt/clearurls.json"
+    rawUrl.set("https://raw.githubusercontent.com/LinkSheet/ClearURLs-Rules/master/data.min.json")
 }

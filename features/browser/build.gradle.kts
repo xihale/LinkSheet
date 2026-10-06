@@ -1,18 +1,21 @@
+import com.gitlab.grrfe.gradlebuild.Version
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import fe.build.dependencies.Grrfe
 import fe.build.dependencies._1fexd
-import fe.buildlogic.Version
 
 plugins {
-    kotlin("android")
+    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
-    id("androidx.room")
+    id("androidx.room3")
+    id("com.google.devtools.ksp")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
     namespace = "app.linksheet.feature.browser"
-    compileSdk = AndroidSdk.COMPILE_SDK
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
 
     defaultConfig {
         minSdk = AndroidSdk.MIN_SDK
@@ -22,21 +25,19 @@ android {
         jvmToolchain(Version.JVM)
     }
 
-    room {
+    room3 {
         schemaDirectory("$projectDir/schemas")
-        generateKotlin = true
     }
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":util"))
-    implementation(project(":common"))
-    implementation(project(":compose"))
+    implementation(project(":lib-api"))
+    implementation(project(":lib-util"))
+    implementation(project(":lib-compose"))
     implementation(project(":feature-app"))
 
-    implementation(AndroidX.room.runtime)
-    implementation(AndroidX.room.ktx)
+    implementation("androidx.room3:room3-runtime:_")
+    ksp("androidx.room3:room3-compiler:_")
 
     implementation(AndroidX.core.ktx)
     implementation(Koin.android)
@@ -58,5 +59,6 @@ dependencies {
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
     testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.result.assert)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

@@ -1,14 +1,15 @@
 package fe.linksheet.module.log
 
 import fe.android.lifecycle.koin.extension.service
+import fe.composekit.preference.asFunction
 import fe.linksheet.LinkSheetApp
 import fe.linksheet.module.log.file.LogFileService
 import fe.linksheet.module.log.file.LogPersistService
 import fe.linksheet.module.log.file.entry.LogEntry
 import fe.linksheet.module.preference.experiment.ExperimentRepository
 import fe.linksheet.module.preference.experiment.Experiments
-import mozilla.components.support.base.log.Log
-import mozilla.components.support.base.log.sink.LogSink
+import fe.composekit.mozilla.components.support.base.log.Log
+import fe.composekit.mozilla.components.support.base.log.sink.LogSink
 import org.koin.dsl.module
 
 val DefaultLogModule = module {

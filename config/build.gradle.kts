@@ -1,16 +1,23 @@
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+
 plugins {
-    kotlin("android")
     id("com.android.library")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
+group = "fe.linksheet.config"
+
 android {
-    namespace = "app.linksheet.config"
-    compileSdk = 36
+    namespace = group.toString()
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
     }
 }
 
-dependencies {
-    implementation("androidx.core:core-ktx:1.17.0")
+kotlin {
+    jvmToolchain(Version.JVM)
 }

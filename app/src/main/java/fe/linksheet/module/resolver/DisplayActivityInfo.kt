@@ -2,6 +2,7 @@ package fe.linksheet.module.resolver
 
 import android.content.pm.ComponentInfo
 import fe.android.compose.icon.IconPainter
+import fe.composekit.extension.componentName
 
 data class DisplayActivityInfo(
 //    val resolvedInfo: ResolveInfo? = null,

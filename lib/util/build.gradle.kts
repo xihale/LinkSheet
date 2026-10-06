@@ -1,21 +1,52 @@
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+import fe.build.dependencies.Grrfe
+import fe.build.dependencies._1fexd
+
 plugins {
-    kotlin("android")
     id("com.android.library")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
-    namespace = "app.linksheet.util"
-    compileSdk = 36
+    namespace = "fe.linksheet.lib.util"
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
+    }
+
+    kotlin {
+        jvmToolchain(Version.JVM)
     }
 }
 
 dependencies {
-    api(project(":api"))
-    api(project(":common"))
-    implementation("androidx.core:core-ktx:1.12.0") // Standard stable version
-    implementation("io.ktor:ktor-client-core:2.3.7") // Standard stable version
-    implementation("com.squareup.okhttp3:okhttp:4.12.0") // Standard stable version
-    implementation("org.jsoup:jsoup:1.17.2")
+    implementation(project(":lib-api"))
+
+    api(KotlinX.coroutines.android)
+    implementation(Koin.android)
+    implementation(Grrfe.std.result.core)
+    implementation(Grrfe.std.uri)
+    implementation(_1fexd.composeKit.core)
+    implementation(_1fexd.composeKit.koin)
+    implementation(_1fexd.composeKit.compose.core)
+    implementation(Square.okHttp3.android)
+    implementation(JetBrains.ktor.client.core)
+    implementation("org.jsoup:jsoup:_")
+    implementation("com.github.seancfoley:ipaddress:_")
+    implementation(AndroidX.core.ktx)
+    implementation(AndroidX.compose.runtime)
+
+
+    testImplementation("com.github.gmazzo.okhttp.mock:mock-client:_")
+    testImplementation(project(":test-fake"))
+    testImplementation(project(":test-core"))
+    testImplementation(Testing.robolectric)
+    testImplementation(KotlinX.coroutines.test)
+    testImplementation(AndroidX.test.ext.junit.ktx)
+    testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.result.assert)
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

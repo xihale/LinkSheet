@@ -2,18 +2,33 @@ package fe.linksheet.feature.systeminfo
 
 import app.linksheet.api.SystemProperties
 import fe.kotlin.extension.string.substringOrNull
+import fe.std.process.android.AndroidStartConfig
+import fe.std.process.launchProcess
 
-public object RealSystemProperties : SystemProperties {
+class RealSystemProperties : SystemProperties {
+
     override fun get(key: String): String? {
-        return try {
-            val process = Runtime.getRuntime().exec(arrayOf("getprop", key))
-            process.inputStream.bufferedReader().use { it.readLine()?.trim()?.takeIf { s -> s.isNotEmpty() } }
-        } catch (e: Exception) {
-            null
-        }
+        return android.os.SystemProperties.get(key)
     }
 
     override fun getAllProperties(): Map<String, String> {
-        return emptyMap() // Minimal stub for refactoring
+        fun String.unwrap(): String? {
+            return trim().run { substringOrNull(1, length - 1) }
+        }
+
+        fun String.parseLine(): Pair<String, String>? {
+            val (wrappedKey, wrappedValue) = split(":").takeIf { it.size >= 2 } ?: return null
+
+            val key = wrappedKey.unwrap() ?: return null
+            val value = wrappedValue.unwrap() ?: return null
+
+            return key to value
+        }
+
+        return buildMap {
+            launchProcess("getprop", invokeOnEmpty = false, config = AndroidStartConfig) {
+                it.parseLine()?.let { (key, value) -> put(key, value) }
+            }
+        }
     }
 }

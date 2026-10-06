@@ -4,14 +4,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.runtime.*
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.rememberBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.linksheet.compose.preview.PreviewContainer
-import app.linksheet.core.ui.sheet.StandardBottomSheet
 import app.linksheet.feature.app.applist.FilterState
 import app.linksheet.feature.app.applist.SortByState
 import app.linksheet.feature.app.applist.SortType
@@ -25,11 +32,12 @@ internal fun FilterSortSheet(
     filterState: FilterState,
     onDismiss: (SortByState, FilterState) -> Unit
 ) {
-    val sheetState = rememberModalBottomSheetState()
+    val sheetState = rememberBottomSheetState(initialValue = SheetValue.Hidden)
+    val scope = rememberCoroutineScope()
     var sortState by remember { mutableStateOf(sortState) }
     var filterState by remember { mutableStateOf(filterState) }
 
-    StandardBottomSheet(
+    ModalBottomSheet(
         onDismissRequest = { onDismiss(sortState, filterState) },
         sheetState = sheetState
     ) {
@@ -37,7 +45,11 @@ internal fun FilterSortSheet(
             sortState = sortState,
             filterState = filterState,
             onSortStateChange = { sortState = it },
-            onFilterState = { filterState = it }
+            onFilterState = { filterState = it },
+//            onDismiss = {
+//                scope.launch { sheetState.hide() }
+//                    .invokeOnCompletion { if (!sheetState.isVisible) onDismiss() }
+//            }
         )
     }
 }
@@ -52,7 +64,9 @@ private fun SheetContent(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .wrapContentHeight()
             .padding(horizontal = 20.dp, vertical = 0.dp),
+        //        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         SortByColumn(

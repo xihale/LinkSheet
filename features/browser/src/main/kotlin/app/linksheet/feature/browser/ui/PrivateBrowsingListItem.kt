@@ -5,23 +5,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Shape
 import app.linksheet.compose.list.item.PreferenceDividedSwitchListItem
 import app.linksheet.feature.browser.R
+import app.linksheet.feature.browser.navigation.PrivateBrowsingRoute
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.preference.helper.Preference
 import fe.composekit.component.CommonDefaults
 import fe.composekit.component.shape.CustomShapeDefaults
-import fe.composekit.layout.column.SaneLazyListScope
+import fe.composekit.layout.column.SaneLazyColumnGroupScope
 import fe.composekit.preference.ViewModelStatePreference
+import fe.composekit.route.Route
 
-fun SaneLazyListScope.privateBrowsingListItem(
+fun SaneLazyColumnGroupScope.privateBrowsingListItem(
     statePreference: ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>,
-    onClick: () -> Unit,
+    navigate: (Route) -> Unit,
 ) {
-    item(key = R.string.settings_private_browsing__title_enable_private_browsing) {
+    item(key = R.string.settings_private_browsing__title_enable_private_browsing) { padding, shape ->
         PrivateBrowsingListItem(
-            shape = CustomShapeDefaults.SingleShape,
-            padding = CommonDefaults.EmptyPadding,
+            shape = shape,
+            padding = padding,
             statePreference = statePreference,
-            onClick = onClick,
+            navigate = navigate
         )
     }
 }
@@ -31,14 +33,16 @@ fun PrivateBrowsingListItem(
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,
     statePreference: ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>,
-    onClick: () -> Unit,
+    navigate: (Route) -> Unit,
 ) {
     PreferenceDividedSwitchListItem(
         shape = shape,
         padding = padding,
         statePreference = statePreference,
-        onContentClick = onClick,
-        headlineContent = textContent(R.string.settings_private_browsing__title_enable_private_browsing),
-        supportingContent = textContent(R.string.enable_request_private_browsing_button_explainer),
+        onContentClick = { navigate(PrivateBrowsingRoute) },
+        headlineContent = textContent(id = R.string.settings_private_browsing__title_enable_private_browsing),
+        supportingContent = textContent(
+            id = R.string.enable_request_private_browsing_button_explainer
+        )
     )
 }

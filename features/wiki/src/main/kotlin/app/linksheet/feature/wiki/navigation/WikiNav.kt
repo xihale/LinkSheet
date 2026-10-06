@@ -10,6 +10,8 @@ import androidx.navigation.NavHostController
 import app.linksheet.compose.util.animatedComposable
 import app.linksheet.feature.wiki.core.WikiPage
 import app.linksheet.feature.wiki.ui.MarkdownViewerWrapper
+import fe.composekit.route.Nav
+import fe.composekit.route.Route
 import kotlinx.serialization.Serializable
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -17,11 +19,7 @@ import kotlin.uuid.ExperimentalUuidApi
 object WikiNav : Nav {
     override val graph: NavGraphBuilder.(NavHostController) -> Unit = { navController ->
         animatedComposable<MarkdownViewerRoute> { _, route ->
-            val titleStr = route.customTitle?.let { stringResource(id = it) } ?: route.title
             MarkdownViewerWrapper(
-                title = titleStr,
-                url = route.url,
-                rawUrl = route.rawUrl,
                 onBackPressed = navController::popBackStack
             )
         }

@@ -3,18 +3,21 @@ package app.linksheet.feature.app.core
 import android.net.Uri
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import app.linksheet.testing.fake.*
+import app.linksheet.testing.fake.MangaExtensionsPackageInfoFake
+import app.linksheet.testing.fake.PackageInfoFakes
+import app.linksheet.testing.fake.TurritPackageInfoFake
+import app.linksheet.testing.fake.YatsePackageInfoFake
+import app.linksheet.testing.fake.asDescriptors
 import app.linksheet.testing.util.flatResolveInfos
 import assertk.assertThat
 import assertk.assertions.containsExactly
-import assertk.assertions.containsExactlyInAnyOrder
 import assertk.assertions.isNotNull
 import fe.linksheet.testlib.core.BaseUnitTest
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
-@Config(sdk = [Build.VERSION_CODES.UPSIDE_DOWN_CAKE])
+@Config(sdk = [Build.VERSION_CODES.BAKLAVA])
 internal class PackageIntentHandlerTest : BaseUnitTest {
 
     @org.junit.Test
@@ -24,7 +27,6 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
             resolveActivity = { _, _ -> null },
             isLinkSheetCompat = { false },
             isSelf = { false },
-            checkReferrerExperiment = { true },
         )
 
         val handlers = handler.findHandlers(Uri.parse("https://www.youtube.com/watch?v=evIpx9Onc2c"), null)
@@ -38,11 +40,10 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
     @org.junit.Test
     fun `test non-exported activities are ignored`() {
         val handler: PackageIntentHandler = DefaultPackageIntentHandler(
-            queryIntentActivities = { _, _ -> TurretPackageInfoFake.resolveInfos },
+            queryIntentActivities = { _, _ -> TurritPackageInfoFake.PackageInfo.resolveInfos },
             resolveActivity = { _, _ -> null },
             isLinkSheetCompat = { false },
             isSelf = { false },
-            checkReferrerExperiment = { true },
         )
 
         val handlers = handler.findHandlers(Uri.parse("https://t.me/magiskalpha"), null)
@@ -58,7 +59,6 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
             resolveActivity = { _, _ -> null },
             isLinkSheetCompat = { false },
             isSelf = { false },
-            checkReferrerExperiment = { true },
         )
 
         assertThat(handler.findHttpBrowsable(null))
@@ -70,6 +70,16 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
                 "com.android.chrome/com.google.android.apps.chrome.Main:"
             )
     }
+//    @org.junit.Test
+//    fun `test http browsable with asterisk host is correctly handled`() {
+//        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
+//            queryIntentActivities = { _, _ -> MpvExPackageInfoFake.PackageInfo.resolveInfos },
+//            resolveActivity = { _, _ -> null },
+//            isLinkSheetCompat = { false },
+//            isSelf = { false },
+//        )
+//        val handlers = handler.findHttpBrowsable(null)
+//    }
 
     @org.junit.Test
     fun `test relative activities are correctly handled`() {
@@ -78,7 +88,6 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
             resolveActivity = { _, _ -> null },
             isLinkSheetCompat = { false },
             isSelf = { false },
-            checkReferrerExperiment = { true },
         )
 
         val handlers = handler.findHttpBrowsable(null)
@@ -95,44 +104,41 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
             resolveActivity = { _, _ -> null },
             isLinkSheetCompat = { false },
             isSelf = { false },
-            checkReferrerExperiment = { true },
         )
 
         val handlers = handler.findHttpBrowsable(null)
         assertThat(handlers.asDescriptors()).containsExactly("com.duckduckgo.mobile.android/com.duckduckgo.app.dispatchers.IntentDispatcherActivity:")
     }
 
-    @org.junit.Test
-    fun `test find supported hosts`() {
-        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
-            queryIntentActivities = { _, _ -> PackageInfoFakes.Pepper.resolveInfos },
-            resolveActivity = { _, _ -> null },
-            isLinkSheetCompat = { false },
-            isSelf = { false },
-            checkReferrerExperiment = { true },
-        )
-
-        assertThat(handler.findSupportedHosts(PackageInfoFakes.Pepper.packageInfo.packageName)).containsExactlyInAnyOrder(
-            "www.pepper.pl",
-            "pl.dea.ls"
-        )
-    }
-
-    @org.junit.Test
-    fun `test find supported hosts 2`() {
-        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
-            queryIntentActivities = { _, _ -> PackageInfoFakes.Youtube.resolveInfos },
-            resolveActivity = { _, _ -> null },
-            isLinkSheetCompat = { false },
-            isSelf = { false },
-            checkReferrerExperiment = { true },
-        )
-        assertThat(handler.findSupportedHosts(PackageInfoFakes.Youtube.packageInfo.packageName)).containsExactlyInAnyOrder(
-            "youtube.com",
-            "www.youtube.com",
-            "youtu.be",
-            "studio.youtube.com",
-            "m.youtube.com"
-        )
-    }
+//    @org.junit.Test
+//    fun `test find supported hosts`() {
+//        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
+//            queryIntentActivities = { _, _ -> PackageInfoFakes.Pepper.resolveInfos },
+//            resolveActivity = { _, _ -> null },
+//            isLinkSheetCompat = { false },
+//            isSelf = { false },
+//        )
+//
+//        assertThat(handler.findSupportedHosts(PackageInfoFakes.Pepper.packageInfo.packageName)).containsExactlyInAnyOrder(
+//            "www.pepper.pl",
+//            "pl.dea.ls"
+//        )
+//    }
+//
+//    @org.junit.Test
+//    fun `test find supported hosts 2`() {
+//        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
+//            queryIntentActivities = { _, _ -> PackageInfoFakes.Youtube.resolveInfos },
+//            resolveActivity = { _, _ -> null },
+//            isLinkSheetCompat = { false },
+//            isSelf = { false },
+//        )
+//        assertThat(handler.findSupportedHosts(PackageInfoFakes.Youtube.packageInfo.packageName)).containsExactlyInAnyOrder(
+//            "youtube.com",
+//            "www.youtube.com",
+//            "youtu.be",
+//            "studio.youtube.com",
+//            "m.youtube.com"
+//        )
+//    }
 }

@@ -7,14 +7,19 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import app.linksheet.compose.util.animatedComposable
 import app.linksheet.feature.profile.ui.ProfileSwitchingSettings
+import fe.composekit.core.AndroidVersion
+import fe.composekit.route.Nav
+import fe.composekit.route.Route
 import kotlinx.serialization.Serializable
 import kotlin.uuid.ExperimentalUuidApi
 
 @Serializable
 object ProfileNav : Nav {
     override val graph: NavGraphBuilder.(NavHostController) -> Unit = { navController ->
-        animatedComposable<ProfileRoute> { _, route ->
-            ProfileSwitchingSettings(onBackPressed = navController::popBackStack)
+        if (AndroidVersion.isAtLeastApi28P()) {
+            animatedComposable<ProfileRoute> { _, route ->
+                ProfileSwitchingSettings(onBackPressed = navController::popBackStack)
+            }
         }
     }
 }

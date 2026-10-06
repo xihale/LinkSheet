@@ -3,6 +3,8 @@ package fe.linksheet.module.resolver
 import android.content.ComponentName
 import android.content.pm.ResolveInfo
 import app.linksheet.feature.app.extension.activityDescriptor
+import fe.composekit.extension.componentName
+import fe.composekit.extension.packageName
 import fe.linksheet.module.repository.whitelisted.createWhitelistedBrowserInfo
 
 class ImprovedBrowserHandler {
@@ -51,17 +53,14 @@ class ImprovedBrowserHandler {
 
             is BrowserModeConfigHelper.SelectedBrowser -> {
                 val browserResolveInfo = config.selectedBrowser?.let { getBrowser(browsers, it) }
-                val hasInfo = browserResolveInfo != null
 //                // TODO: Need to use merged here since resolvedList might contain ResolveInfos also present in browsers
 //                // TODO: Do we really need to use the component?
-//                val isSingleOption = nonBrowsers.isEmpty()
-//                        && browsers.size == 1
-//                        && browsers.values.singleOrNull()?.activityInfo?.componentName == browserResolveInfo?.activityInfo?.componentName
+                val isSingleOption = nonBrowsers.isEmpty() && browserResolveInfo != null
                 FilteredBrowserList(
                     browserMode = config.mode,
-                    browsers = if (hasInfo) listOf(browserResolveInfo) else emptyList(),
+                    browsers = listOfNotNull(browserResolveInfo),
                     apps = nonBrowsers,
-                    isSingleOption = hasInfo
+                    isSingleOption = isSingleOption
                 )
             }
 

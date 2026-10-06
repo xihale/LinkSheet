@@ -1,24 +1,42 @@
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+
 plugins {
-    kotlin("android")
-    kotlin("plugin.compose")
     id("com.android.library")
+    kotlin("plugin.compose")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
+group = "fe.linksheet.scaffold"
+
 android {
-    namespace = "app.linksheet.scaffold"
-    compileSdk = 36
+    namespace = group.toString()
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
     }
+
     buildFeatures {
         compose = true
     }
 }
 
-dependencies {
-    implementation(project(":compose"))
+kotlin {
+    jvmToolchain(Version.JVM)
+}
 
-    implementation("androidx.compose.material3:material3:1.5.0-alpha10")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("androidx.activity:activity-compose:1.12.1")
+dependencies {
+    implementation(platform("androidx.compose:compose-bom-alpha:_"))
+
+    implementation(AndroidX.compose.ui.toolingPreview)
+    implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.material3)
+    implementation(AndroidX.compose.foundation)
+
+    implementation(AndroidX.compose.material.icons.core)
+    implementation(AndroidX.compose.material.icons.extended)
+    implementation(AndroidX.activity.compose)
+    implementation("androidx.compose.material3:material3-android:_")
 }

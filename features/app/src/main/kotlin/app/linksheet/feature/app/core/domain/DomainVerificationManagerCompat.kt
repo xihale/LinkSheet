@@ -2,9 +2,9 @@ package app.linksheet.feature.app.core.domain
 
 import android.content.Context
 import android.content.pm.verify.domain.DomainVerificationManager
-import fe.composekit.core.AndroidVersion
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
+import fe.composekit.core.AndroidVersion
 
 fun interface DomainVerificationManagerCompat {
     fun getDomainVerificationUserState(packageName: String): VerificationStateCompat?

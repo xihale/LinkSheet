@@ -1,5 +1,4 @@
 package fe.linksheet.activity.bottomsheet.content.success.appcontent
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,11 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import app.linksheet.compose.preview.PreviewDebugProvider
-import fe.linksheet.activity.bottomsheet.Interaction
-import app.linksheet.compose.debugBorder
-import app.linksheet.feature.app.core.ActivityAppInfo
 import app.linksheet.compose.debug.LocalUiDebug
+import app.linksheet.compose.debugBorder
+import app.linksheet.compose.preview.PreviewDebugProvider
+import app.linksheet.feature.app.core.ActivityAppInfo
+import fe.linksheet.activity.bottomsheet.AppInteraction
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -28,8 +27,7 @@ fun AppContent(
     appListSelectedIdx: Int,
     hasPreferredApp: Boolean,
     hideChoiceButtons: Boolean,
-    dispatch: (Interaction) -> Unit,
-    showToast: (Int, Int, Boolean) -> Unit,
+    dispatch: (AppInteraction) -> Unit,
     content: @Composable ColumnScope.(Modifier) -> Unit,
 ) {
     val debug by LocalUiDebug.current.drawBorders.collectAsStateWithLifecycle()
@@ -43,7 +41,6 @@ fun AppContent(
                 info = info,
                 selected = appListSelectedIdx,
                 dispatch = dispatch,
-                showToast = showToast
             )
         }
     }
@@ -70,7 +67,6 @@ private fun AppContentPreviewBase() {
             hasPreferredApp = false,
             hideChoiceButtons = false,
             dispatch = { },
-            showToast = { _, _, _ -> }
         ) { modifier ->
             LazyColumn(modifier = modifier) {
                 items(count = 25) {

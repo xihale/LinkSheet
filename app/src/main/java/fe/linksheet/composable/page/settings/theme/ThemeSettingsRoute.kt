@@ -1,17 +1,20 @@
 package fe.linksheet.composable.page.settings.theme
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import fe.android.compose.text.StringResourceContent.Companion.textContent
+import fe.composekit.component.ContentType
+import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.toEnabledContentSet
 import fe.linksheet.R
 import fe.linksheet.composable.component.list.item.type.PreferenceRadioButtonListItem
 import app.linksheet.compose.list.item.PreferenceSwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.linksheet.module.viewmodel.ThemeSettingsViewModel
 import fe.linksheet.composable.ui.ThemeV2
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import fe.composekit.core.AndroidVersion
+import fe.composekit.preference.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
 

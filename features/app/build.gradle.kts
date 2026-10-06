@@ -1,40 +1,66 @@
+
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+import com.gitlab.grrfe.gradlebuild.common.CompilerOption
+import com.gitlab.grrfe.gradlebuild.common.PluginOption
+import com.gitlab.grrfe.gradlebuild.extension.addCompilerOptions
+import com.gitlab.grrfe.gradlebuild.extension.addPluginOptions
+import fe.build.dependencies.Grrfe
+import fe.build.dependencies._1fexd
+
 plugins {
-    kotlin("android")
     kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("kotlin-parcelize")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
     namespace = "app.linksheet.feature.app"
-    compileSdk = 36
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
     }
-    buildFeatures {
-        compose = true
+
+    kotlin {
+        jvmToolchain(Version.JVM)
+        compilerOptions.freeCompilerArgs.addCompilerOptions(CompilerOption.SkipPreReleaseCheck)
+        compilerOptions.freeCompilerArgs.addPluginOptions(PluginOption.Parcelize.ExperimentalCodeGeneration to true)
     }
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":common"))
-    implementation(project(":compose"))
-    implementation(project(":util"))
+    implementation(project(":lib-compose"))
+    implementation(project(":lib-util"))
+    implementation(project(":test-fake"))
+    compileOnly(project(":lib-hidden-api"))
 
-    implementation(platform("com.github.1fexd.composekit:platform:0.0.86"))
-    implementation("com.github.1fexd.composekit:compose-core")
-    implementation("com.github.1fexd.composekit:compose-component")
-    implementation("com.github.1fexd.composekit:core")
-    implementation("com.github.1fexd.composekit:preference-compose-core")
-    implementation("com.github.1fexd.composekit:preference-compose-core2")
+    api(Grrfe.std.coroutines)
+    implementation(AndroidX.compose.material3)
+    implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.ui.toolingPreview)
+    implementation(AndroidX.compose.foundation)
 
-    implementation("androidx.compose.ui:ui:1.11.0-alpha01")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.11.0-alpha01")
-    implementation("androidx.compose.foundation:foundation:1.11.0-alpha01")
-    implementation("androidx.compose.material3:material3:1.5.0-alpha10")
-    implementation("androidx.core:core-ktx:1.17.0")
-    implementation("io.github.reandroid:ARSCLib:1.3.8")
-    implementation("com.gitlab.grrfe.kotlin-ext:result-core:0.0.148")
+    implementation(Grrfe.std.core)
+    implementation(Grrfe.std.result.core)
+
+    implementation(_1fexd.composeKit.core)
+    implementation(_1fexd.composeKit.compose.core)
+    implementation(_1fexd.composeKit.compose.component)
+    implementation(_1fexd.composeKit.koin)
+    implementation("com.github.LinkSheet.flavors:core:_")
+
+    implementation(Grrfe.gsonExt.core)
+    implementation("io.github.reandroid:ARSCLib:_")
+    implementation(AndroidX.core.ktx)
+
+    testImplementation(Testing.robolectric)
+    testImplementation(AndroidX.test.ext.junit.ktx)
+    testImplementation(project(":test-core"))
+    testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.result.assert)
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

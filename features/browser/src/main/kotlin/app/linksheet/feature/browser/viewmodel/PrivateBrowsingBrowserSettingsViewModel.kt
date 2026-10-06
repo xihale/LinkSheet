@@ -1,8 +1,9 @@
 package app.linksheet.feature.browser.viewmodel
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.linksheet.feature.app.applist.AppListCommon
+import app.linksheet.feature.app.applist.AppListModel
 import app.linksheet.feature.app.core.ActivityAppInfo
 import app.linksheet.feature.app.usecase.BrowsersUseCase
 import app.linksheet.feature.browser.core.PrivateBrowsingService
@@ -19,10 +20,11 @@ class PrivateBrowsingBrowserSettingsViewModel internal constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    val list by lazy {
-        AppListCommon(
-            apps = useCase.queryBrowsersFlow().map { list ->
-                list.filter { privateBrowsingService.isKnownBrowser(it.packageName, true) != null }
+    val appListModel by lazy {
+        AppListModel(
+            queryApps = {
+                useCase.queryBrowsers()
+                    .filter { privateBrowsingService.isKnownBrowser(it.packageName, true) != null }
             },
             scope = viewModelScope
         )
@@ -33,11 +35,10 @@ class PrivateBrowsingBrowserSettingsViewModel internal constructor(
     }
 
     fun save(app: ActivityAppInfo, enabled: Boolean) = viewModelScope.launch(dispatcher) {
-        val flatComponentName = app.componentName.flattenToString()
         if (enabled) {
-            repository.insert(flatComponentName)
+            repository.insert(app.flatComponentName)
         } else {
-            repository.deleteByFlatComponentName(flatComponentName)
+            repository.deleteByFlatComponentName(app.flatComponentName)
         }
     }
 }

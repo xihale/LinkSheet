@@ -1,18 +1,24 @@
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+
 plugins {
-    kotlin("android")
     id("com.android.library")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
+group = "fe.linksheet.hiddenapi"
 
 android {
-    namespace = "app.linksheet.hiddenapi"
-    compileSdk = 36
+    namespace = group.toString()
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
+
     defaultConfig {
-        minSdk = 26
+        minSdk = AndroidSdk.MIN_SDK
     }
 }
 
 dependencies {
-    compileOnly("androidx.annotation:annotation:1.9.1")
-    implementation("dev.rikka.tools.refine:runtime:4.0.0")
-    compileOnly("dev.rikka.tools.refine:annotation:4.0.0")
+    annotationProcessor("com.github.1fexd.HiddenApiRefinePlugin:annotation-processor:4.4.1")
+    compileOnly("com.github.1fexd.HiddenApiRefinePlugin:annotation:4.4.1")
+    compileOnly("org.jetbrains:annotations:_")
+    compileOnly(AndroidX.annotation)
 }

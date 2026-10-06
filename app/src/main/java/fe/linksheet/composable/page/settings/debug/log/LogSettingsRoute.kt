@@ -21,6 +21,10 @@ import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.OptionalTextContent
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
+import fe.composekit.component.CommonDefaults
+import fe.composekit.component.list.column.shape.ClickableShapeListItem
+import fe.composekit.component.shape.CustomShapeDefaults
+import fe.composekit.route.Route
 import fe.std.javatime.time.localizedString
 import fe.linksheet.navigation.LogTextViewerRoute
 import fe.linksheet.R

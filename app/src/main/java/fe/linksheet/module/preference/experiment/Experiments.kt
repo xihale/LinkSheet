@@ -2,6 +2,7 @@ package fe.linksheet.module.preference.experiment
 
 import fe.android.preference.helper.Preference
 import fe.android.preference.helper.PreferenceDefinition
+import fe.composekit.preference.ViewModelStatePreference
 
 object Experiments : PreferenceDefinition(
     "experiment_drop_categories",
@@ -18,25 +19,25 @@ object Experiments : PreferenceDefinition(
     "experiment_expressive_loading_sheet",
     "experiment_impr_btm_sheet_url_double_tap",
     "experiment_impr_btm_sheet_expand_fully",
-    "experiment_improved_bottom_sheet_auto_launch_single_browser"
+    "experiment_improved_bottom_sheet_auto_launch_single_browser",
+    "experiment_manual_follow_redirects",
+    "experiment_aggressive_follow_redirects"
 ) {
     val interceptAccidentalTaps = boolean(
         key = "experiment_intercept_accidental_taps",
         default = true
     )
-    val manualFollowRedirects = boolean(
-        key = "experiment_manual_follow_redirects",
-        default = false
-    )
 
     val libRedirectJsEngine = boolean(
         key = "experiment_enable_libredirect_js_engine"
     )
+
+    val enableAnalytics = boolean(
+        key = "experiment_enable_analytics",
+        default = false
+    )
     val noBottomSheetStateSave = boolean(
         key = "experiment_no_bottom_sheet_state_save"
-    )
-    val aggressiveFollowRedirects = boolean(
-        key = "experiment_aggressive_follow_redirects"
     )
     val linkEngine = boolean(
         key = "experiment_link_engine"
@@ -47,6 +48,7 @@ object Experiments : PreferenceDefinition(
 
     val newVlh = boolean(
         key = "experiment_new_vlh",
+        default = false
     )
 
     val newShizuku = boolean(
@@ -57,20 +59,16 @@ object Experiments : PreferenceDefinition(
         key = "experiment_scenario"
     )
 
+    val libRedirectCustomInstances = boolean(
+        key = "libredirect_custom_instances",
+    )
+
     val experiments = listOf(
         group(
             name = "improved_bottom_sheet",
             displayName = "Improved bottom sheet",
-//            experiment("Auto-expand bottom sheet fully", improvedBottomSheetExpandFully),
-//            experiment("Double tap url to open app", improvedBottomSheetUrlDoubleTap),
-            experiment("LibRedirect QuickJS engine", libRedirectJsEngine),
-//            experiment("Hide referring app from results in bottom sheet", hideReferrerFromSheet),
             experiment("Ignore accidental taps while sheet is animating", interceptAccidentalTaps),
-//            experiment("Auto-launch single browser", autoLaunchSingleBrowser),
-            experiment("Manual redirect resolving", manualFollowRedirects),
             experiment("Disable bottom sheet state save", noBottomSheetStateSave),
-            experiment("Aggressive follow redirects", aggressiveFollowRedirects),
-//            experiment("Expressive loading indicator", expressiveLoadingSheet)
         ),
         group(
             name = "logging",
@@ -86,11 +84,23 @@ object Experiments : PreferenceDefinition(
             name = "new_vlh",
             displayName = "New verified link handlers page",
             experiment("Enable new VLH page", newVlh)
+        ),
+        group(
+            name = "libredirect",
+            displayName = "LibRedirect",
+            experiment("QuickJS engine", libRedirectJsEngine),
+            experiment("Custom instances", libRedirectCustomInstances)
+        ),
+        group(
+            name = "shizuku",
+            displayName = "Shizuku",
+            experiment("Enable Shizuku", newShizuku)
         )
     )
 
     // TODO: Enforce type
     init {
+        enableAnalytics.migrate { repository, _ -> repository.put(enableAnalytics, false) }
         finalize()
     }
 

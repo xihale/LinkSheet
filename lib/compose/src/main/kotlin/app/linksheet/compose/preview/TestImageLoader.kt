@@ -1,8 +1,17 @@
+@file:Suppress("FunctionName")
+
 package app.linksheet.compose.preview
 
 import android.content.Context
 import coil3.ImageLoader
+import coil3.test.FakeImageLoaderEngine
 
-public fun TestImageLoader(context: Context, block: Any? = null): ImageLoader {
-    return ImageLoader.Builder(context).build()
+
+fun TestImageLoader(context: Context, block: FakeImageLoaderEngine.Builder.() -> Unit): ImageLoader {
+    val engine = FakeImageLoaderEngine.Builder().apply(block).build()
+    val imageLoader = ImageLoader.Builder(context)
+        .components { add(engine) }
+        .build()
+
+    return imageLoader
 }

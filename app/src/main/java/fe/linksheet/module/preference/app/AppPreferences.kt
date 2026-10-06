@@ -1,22 +1,24 @@
+@file:OptIn(UnsafePreferenceInteraction::class)
+
 package fe.linksheet.module.preference.app
 
-import app.linksheet.api.PreferenceRegistry
+
+import app.linksheet.api.SensitivePreference
+import app.linksheet.feature.analytics.preference.analyticsPreferences
 import app.linksheet.feature.browser.preference.browserPreferences
+import app.linksheet.feature.downloader.preference.downloaderPreferences
 import app.linksheet.feature.libredirect.preference.libRedirectPreferences
 import app.linksheet.feature.profile.preference.profilePreferences
+import app.linksheet.feature.remoteconfig.preference.remoteConfigPreferences
 import app.linksheet.feature.shizuku.preference.shizukuPreferences
 import com.google.gson.JsonArray
-import fe.android.preference.helper.Preference
-import fe.android.preference.helper.PreferenceDefinition
-import fe.android.preference.helper.TypeMapper
+import fe.android.preference.helper.UnsafePreferenceInteraction
 import fe.gson.dsl.jsonObject
 import fe.gson.util.jsonArrayItems
-import fe.linksheet.composable.ui.Theme
-import fe.linksheet.module.preference.SensitivePreference
-import java.util.*
-import kotlin.reflect.KClass
+import fe.linksheet.module.preference.LinkSheetPreferenceDefinition
+import java.util.UUID
 
-object AppPreferences : PreferenceDefinition(
+object AppPreferences : LinkSheetPreferenceDefinition(
     "enable_copy_button",
     "single_tap",
     "enable_send_button",
@@ -25,35 +27,13 @@ object AppPreferences : PreferenceDefinition(
     "amp2html_builtin_cache",
     "follow_redirects_builtin_cache",
     "use_text_share_copy_buttons",
+    "telemetry_identity",
     "use_dev_bottom_sheet",
     "dev_bottom_sheet_experiment",
     "show_discord_banner",
-    "donate_card_dismissed"
+    "donate_card_dismissed",
+    "theme"
 ) {
-    private val registry = object : PreferenceRegistry {
-        override fun boolean(
-            key: String,
-            default: Boolean
-        ): Preference.Boolean {
-            return this@AppPreferences.boolean(key, default)
-        }
-
-        override fun string(key: String, default: String?): Preference.Nullable<String> {
-            return this@AppPreferences.string(key, default)
-        }
-
-        override fun <T : Any, M : Any> mapped(
-            key: String,
-            default: T,
-            mapper: TypeMapper<T, M>,
-            t: KClass<T>,
-            m: KClass<M>
-        ): Preference.Mapped<T, M> {
-            return this@AppPreferences.mapped(key, default, mapper, t, m)
-        }
-    }
-
-
     val alwaysShowPackageName = boolean("always_show_package_name")
     val useClearUrls = boolean("use_clear_urls")
     val useFastForwardRules = boolean("fast_forward_rules")
@@ -84,7 +64,7 @@ object AppPreferences : PreferenceDefinition(
     val bottomSheet = BottomSheet(registry)
     val notifications = Notifications(registry)
     val amp2Html = Amp2Html(registry)
-    val downloader = Downloader(registry)
+    val downloader = downloaderPreferences(registry)
     val followRedirects = FollowRedirects(registry)
     val themeV2 = ThemeV2(registry)
 
@@ -92,15 +72,30 @@ object AppPreferences : PreferenceDefinition(
     val shizuku = shizukuPreferences(registry)
     val browser = browserPreferences(registry)
     val profileSwitcher = profilePreferences(registry)
+    val analytics = analyticsPreferences(registry)
+    val remoteConfig = remoteConfigPreferences(registry)
 
     init {
-        mapped("theme", Theme.System, Theme).migrate { repository, theme ->
+        migrate("theme") { repository ->
             if (!repository.hasStoredValue(themeV2.themeV2)) {
-                if (theme == Theme.AmoledBlack) {
+                val theme = repository.raw.unsafeGetInt("theme", 0)
+                if (theme == 3) {
                     repository.put(themeV2.amoled, true)
                 }
-
-                repository.put(themeV2.themeV2, theme.toV2())
+                val value = when(theme) {
+                    0 -> fe.linksheet.composable.ui.ThemeV2.System
+                    1 -> fe.linksheet.composable.ui.ThemeV2.Light
+                    2, 3 -> fe.linksheet.composable.ui.ThemeV2.Dark
+                    else -> null
+                }
+                if (value != null) {
+                    repository.put(themeV2.themeV2, value)
+                }
+            }
+        }
+        requestTimeout.migrate { repository, i ->
+            if(!repository.hasStoredValue(downloader.requestTimeout)) {
+                repository.put(downloader.requestTimeout, i)
             }
         }
 
@@ -108,7 +103,7 @@ object AppPreferences : PreferenceDefinition(
     }
 
     @SensitivePreference
-    val sensitivePreferences = setOf(useTimeMs, installationId)
+    val sensitivePreferences = setOf(useTimeMs, analytics.telemetryIdentity, analytics.telemetryLevel, analytics.telemetryId)
 
     fun toJsonArray(preferences: Map<String, String?>): JsonArray {
         val objs = preferences.map { (key, value) ->
@@ -121,4 +116,5 @@ object AppPreferences : PreferenceDefinition(
         return jsonArrayItems(objs)
     }
 }
+
 

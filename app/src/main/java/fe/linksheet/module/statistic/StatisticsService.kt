@@ -1,16 +1,15 @@
 package fe.linksheet.module.statistic
 
 import androidx.lifecycle.LifecycleOwner
+import app.linksheet.api.SensitivePreference
+import app.linksheet.api.preference.AppPreferenceRepository
 import fe.android.lifecycle.LifecycleAwareService
 import fe.android.lifecycle.koin.extension.service
-import fe.linksheet.module.preference.PreferenceRepositoryModule
-import fe.linksheet.module.preference.SensitivePreference
-import fe.linksheet.module.preference.app.AppPreferenceRepository
 import fe.linksheet.module.preference.app.AppPreferences
 import org.koin.dsl.module
 
 val StatisticsModule = module {
-    includes(PreferenceRepositoryModule)
+//    includes(PreferenceRepositoryModule)
     service<StatisticsService, AppPreferenceRepository> { _, preferences ->
         StatisticsService(preferences)
     }

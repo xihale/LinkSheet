@@ -18,6 +18,8 @@ import androidx.compose.ui.res.stringResource
 import fe.android.compose.feedback.LocalHapticFeedbackInteraction
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
+import fe.composekit.component.ContentType
+import fe.composekit.component.card.AlertCard
 import fe.linksheet.R
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 

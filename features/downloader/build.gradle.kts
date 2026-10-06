@@ -1,18 +1,19 @@
+import com.gitlab.grrfe.gradlebuild.Version
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.buildlogic.Version
-import fe.buildlogic.common.OptIn
-import fe.buildlogic.common.extension.addOptIn
+import fe.build.dependencies.Grrfe
+import fe.build.dependencies._1fexd
 
 plugins {
-    kotlin("android")
     kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.gitlab.grrfe.android-build-plugin")
 }
 
 android {
     namespace = "app.linksheet.feature.downloader"
-    compileSdk = AndroidSdk.COMPILE_SDK
+    compileSdk = app.linksheet.buildsrc.Sdk.CompileSdk
+    compileSdkMinor = app.linksheet.buildsrc.Sdk.CompileSdkMinor
 
     defaultConfig {
         minSdk = AndroidSdk.MIN_SDK
@@ -20,27 +21,38 @@ android {
 
     kotlin {
         jvmToolchain(Version.JVM)
-        addOptIn(OptIn.ExperimentalTime)
-    }
-
-    buildFeatures {
-        compose = true
     }
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":common"))
-    implementation(project(":util"))
+    implementation(project(":lib-compose"))
+    implementation(project(":lib-util"))
+    implementation(_1fexd.composeKit.ext.mozillaSupportBase)
+    implementation(project(":lib-api"))
+    implementation(project(":integration-mime-types"))
 
+    implementation(Grrfe.std.core)
+    implementation(Grrfe.std.uri)
+    implementation(Grrfe.httpkt.core)
+    implementation(Grrfe.httpkt.core2.core)
     implementation(Koin.android)
     implementation(Koin.compose)
     implementation(AndroidX.core.ktx)
-
-    implementation(platform("androidx.compose:compose-bom-alpha:_"))
-    implementation(AndroidX.compose.runtime)
+    implementation(_1fexd.composeKit.core)
+    implementation(_1fexd.composeKit.preference.core)
+    implementation(_1fexd.composeKit.preference.compose.core)
+    implementation(_1fexd.composeKit.preference.compose.core2)
+    implementation(_1fexd.composeKit.preference.compose.mock)
+    implementation(_1fexd.composeKit.preference.compose.mock2)
+    implementation(_1fexd.composeKit.compose.route)
+    implementation(_1fexd.composeKit.compose.component)
     implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material3)
+    implementation(AndroidX.navigation.compose)
+    implementation(AndroidX.compose.material.icons.core)
+    implementation(AndroidX.compose.material.icons.extended)
+    implementation(Google.accompanist.permissions)
 
     implementation(JetBrains.ktor.client.core)
     implementation(JetBrains.ktor.client.gson)
@@ -53,8 +65,13 @@ dependencies {
     implementation(JetBrains.ktor.plugins.serialization.gson)
     testImplementation(JetBrains.ktor.client.mock)
 
+
+    testImplementation(Grrfe.httpkt.core2.test)
     testImplementation(Testing.robolectric)
     testImplementation(KotlinX.coroutines.test)
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(project(":test-core"))
+    testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.result.assert)
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

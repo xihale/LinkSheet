@@ -8,6 +8,8 @@ import androidx.compose.ui.res.stringResource
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
+import fe.composekit.component.list.item.default.DefaultTwoLineIconClickableShapeListItem
+import fe.composekit.route.Route
 import fe.linksheet.R
 import fe.linksheet.navigation.PreferredBrowserSettingsRoute
 import fe.linksheet.navigation.inAppBrowserSettingsRoute
