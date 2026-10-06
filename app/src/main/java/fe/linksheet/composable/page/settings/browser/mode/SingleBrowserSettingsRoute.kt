@@ -1,4 +1,3 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.browser.mode
 
 import android.content.ComponentName
@@ -14,7 +13,6 @@ import app.linksheet.feature.app.ui.AppInfoIcon
 import app.linksheet.feature.app.ui.appList
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.linksheet.R
 import fe.linksheet.module.viewmodel.PreferredBrowserViewModel
 import fe.linksheet.module.viewmodel.SingleBrowserViewModel

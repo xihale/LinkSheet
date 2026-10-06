@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.activity.bottomsheet.content.success.appcontent
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi

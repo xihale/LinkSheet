@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.link.redirect
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

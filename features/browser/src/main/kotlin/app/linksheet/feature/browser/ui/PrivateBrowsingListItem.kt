@@ -5,20 +5,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Shape
 import app.linksheet.compose.list.item.PreferenceDividedSwitchListItem
 import app.linksheet.feature.browser.R
-import app.linksheet.feature.browser.navigation.PrivateBrowsingRoute
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.preference.helper.Preference
+import fe.composekit.component.CommonDefaults
+import fe.composekit.component.shape.CustomShapeDefaults
+import fe.composekit.layout.column.SaneLazyListScope
+import fe.composekit.preference.ViewModelStatePreference
 
-fun SaneLazyColumnGroupScope.privateBrowsingListItem(
+fun SaneLazyListScope.privateBrowsingListItem(
     statePreference: ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>,
-    navigate: (Route) -> Unit,
+    onClick: () -> Unit,
 ) {
-    item(key = R.string.settings_private_browsing__title_enable_private_browsing) { padding, shape ->
+    item(key = R.string.settings_private_browsing__title_enable_private_browsing) {
         PrivateBrowsingListItem(
-            shape = shape,
-            padding = padding,
+            shape = CustomShapeDefaults.SingleShape,
+            padding = CommonDefaults.EmptyPadding,
             statePreference = statePreference,
-            navigate = navigate
+            onClick = onClick,
         )
     }
 }
@@ -28,16 +31,14 @@ fun PrivateBrowsingListItem(
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,
     statePreference: ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>,
-    navigate: (Route) -> Unit,
+    onClick: () -> Unit,
 ) {
     PreferenceDividedSwitchListItem(
         shape = shape,
         padding = padding,
         statePreference = statePreference,
-        onContentClick = { navigate(PrivateBrowsingRoute) },
-        headlineContent = textContent(id = R.string.settings_private_browsing__title_enable_private_browsing),
-        supportingContent = textContent(
-            id = R.string.enable_request_private_browsing_button_explainer
-        )
+        onContentClick = onClick,
+        headlineContent = textContent(R.string.settings_private_browsing__title_enable_private_browsing),
+        supportingContent = textContent(R.string.enable_request_private_browsing_button_explainer),
     )
 }

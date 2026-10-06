@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.annotation.VisibleForTesting
 import app.linksheet.feature.app.extension.activityDescriptor
 import fe.linksheet.util.ResolveInfoFlags
+import fe.linksheet.util.extension.android.packageName
 
 interface PackageIntentHandler {
     fun isSelfDefaultBrowser(): Boolean

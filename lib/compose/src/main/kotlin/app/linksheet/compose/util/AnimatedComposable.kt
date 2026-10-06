@@ -1,21 +1,15 @@
 package app.linksheet.compose.util
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-/**
- * Clean standard Navigation extensions.
- */
-
-public fun NavGraphBuilder.animatedComposable(
+public inline fun NavGraphBuilder.animatedComposable(
     route: String,
-    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+    crossinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) {
-    composable(
-        route = route,
-        content = content
-    )
+    composable(route = route, content = { entry -> content(entry) })
 }
+

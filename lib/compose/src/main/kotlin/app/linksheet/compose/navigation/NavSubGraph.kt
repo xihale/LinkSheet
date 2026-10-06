@@ -4,12 +4,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.navigation
 
-interface NavSubGraph {
-    val startDestination: Any
+interface NavSubGraph<out T : Any> {
+    val startDestination: T
     val graph: NavGraphBuilder.(NavHostController) -> Unit
 }
 
-inline fun <reified G : NavSubGraph> NavGraphBuilder.attachSubGraph(
+inline fun <reified G : NavSubGraph<*>> NavGraphBuilder.attachSubGraph(
     page: G,
     navController: NavHostController,
 ) {

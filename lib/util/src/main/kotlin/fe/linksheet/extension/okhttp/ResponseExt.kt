@@ -28,5 +28,5 @@ fun Response.refresh(): String? {
 }
 
 fun Response.parseHtmlBody(): Document {
-    return body.byteStream().use { it.parseHtmlBody(urlString(), charset()) }
+    return body!!.byteStream().use { it.parseHtmlBody(urlString(), charset()) }
 }

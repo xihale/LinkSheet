@@ -5,6 +5,7 @@ import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
+    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
 }
@@ -35,7 +36,7 @@ dependencies {
     implementation(Koin.android)
     implementation(Koin.compose)
     implementation(AndroidX.core.ktx)
-    
+
     implementation(platform("androidx.compose:compose-bom-alpha:_"))
     implementation(AndroidX.compose.runtime)
     implementation(AndroidX.compose.ui)

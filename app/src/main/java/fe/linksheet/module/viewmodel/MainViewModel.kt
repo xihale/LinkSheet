@@ -1,6 +1,5 @@
 package fe.linksheet.module.viewmodel
 
-
 import android.app.Activity
 import android.app.Application
 import android.content.ClipboardManager
@@ -9,23 +8,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import androidx.core.content.getSystemService
-import androidx.navigation.NavDestination
-import app.linksheet.api.preference.AppPreferenceRepository
+import fe.linksheet.module.preference.app.AppPreferenceRepository
 import app.linksheet.compose.debug.DebugMenuSlotProvider
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.devicecompat.miui.MiuiCompat
 import app.linksheet.feature.devicecompat.miui.MiuiCompatProvider
 import dev.zwander.shared.ShizukuUtil
-import fe.linksheet.module.analytics.AnalyticsEvent
-import fe.linksheet.module.analytics.BaseAnalyticsService
-import fe.linksheet.module.analytics.TelemetryLevel
-import fe.linksheet.module.preference.SensitivePreference
 import fe.linksheet.module.preference.app.AppPreferences
 import fe.linksheet.module.preference.experiment.ExperimentRepository
 import fe.linksheet.module.preference.state.AppStatePreferences
 import fe.linksheet.module.preference.state.AppStateRepository
 import fe.linksheet.module.viewmodel.base.BaseViewModel
-import fe.linksheet.module.workmanager.WorkDelegatorService
 import fe.linksheet.util.extension.android.tryStartActivity
 import fe.linksheet.web.UriUtil
 import fe.std.coroutines.RefreshableStateFlow
@@ -40,21 +33,12 @@ class MainViewModel(
     val appStateRepository: AppStateRepository,
     val preferenceRepository: AppPreferenceRepository,
     val experimentRepository: ExperimentRepository,
-    private val analyticsService: BaseAnalyticsService,
     private val miuiCompatProvider: MiuiCompatProvider,
     private val miuiCompat: MiuiCompat,
     val debugMenu: DebugMenuSlotProvider,
     private val intentHandler: PackageIntentHandler,
-    private val workDelegatorService: WorkDelegatorService,
 ) : BaseViewModel(preferenceRepository) {
     val newDefaultsDismissed = appStateRepository.asViewModelState(AppStatePreferences.newDefaults_2024_12_29_InfoDismissed)
-
-    @OptIn(SensitivePreference::class)
-    val telemetryLevel = experimentRepository.asViewModelState(AppPreferences.telemetryLevel)
-
-    val telemetryShowInfoDialog = experimentRepository.asViewModelState(AppPreferences.telemetryShowInfoDialog)
-    val remoteConfigDialogDismissed = appStateRepository.asViewModelState(AppStatePreferences.remoteConfigDialogDismissed)
-    val remoteConfig = preferenceRepository.asViewModelState(AppPreferences.remoteConfig)
     val homeClipboardCard = experimentRepository.asViewModelState(AppPreferences.homeClipboardCard)
 
     private val clipboardManager by lazy { context.getSystemService<ClipboardManager>()!! }
@@ -117,22 +101,6 @@ class MainViewModel(
 
     private fun tryParseUriString(uriStr: String): Uri? {
         return UriUtil.parseWebUriStrict(uriStr)
-    }
-
-    fun enqueueNavEvent(destination: NavDestination, args: Bundle?) {
-        analyticsService.enqueue(AnalyticsEvent.Navigate(destination.route ?: "<no_route>"))
-    }
-
-    fun updateTelemetryLevel(level: TelemetryLevel) {
-        telemetryLevel(level)
-        telemetryShowInfoDialog(false)
-        analyticsService.changeLevel(level)
-    }
-
-    fun setRemoteConfig(enabled: Boolean) {
-        remoteConfigDialogDismissed(true)
-        remoteConfig(enabled)
-        workDelegatorService.setRemoteConfig(enabled)
     }
 
     enum class SettingsIntent(val action: String) {

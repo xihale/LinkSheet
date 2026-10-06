@@ -7,6 +7,7 @@ import app.linksheet.feature.engine.core.context.EngineRunContext
 import app.linksheet.feature.engine.core.rule.PostProcessorInput
 import app.linksheet.feature.engine.core.rule.PostProcessorRule
 import fe.linksheet.extension.toAndroidUri
+import fe.linksheet.util.intent.buildIntent
 import fe.std.uri.StdUrl
 
 class IntentPostprocessorRule(

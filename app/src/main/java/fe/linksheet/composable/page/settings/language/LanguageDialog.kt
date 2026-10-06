@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.language
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.compose.runtime.*
 import fe.linksheet.R
 import fe.linksheet.extension.android.getApplicationInfoCompat
+import fe.linksheet.util.intent.buildIntent
 import fe.linksheet.util.extension.android.tryStartActivity
 import fe.std.result.isFailure
 import rikka.shizuku.Shizuku

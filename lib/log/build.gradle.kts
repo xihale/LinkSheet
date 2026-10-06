@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "app.linksheet.log"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 26
     }
@@ -13,5 +13,4 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
-    implementation("org.mozilla.components:support-utils:145.0b9")
 }

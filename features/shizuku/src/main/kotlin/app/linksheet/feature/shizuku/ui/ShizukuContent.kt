@@ -1,4 +1,3 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.shizuku.ui
 
 import androidx.compose.runtime.Composable

@@ -7,6 +7,7 @@ import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
+    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("androidx.room")
@@ -44,14 +45,13 @@ dependencies {
     implementation(project(":feature-app"))
     implementation(project(":feature-browser"))
     implementation(project(":feature-downloader"))
-     // implementation(project(":feature-libredirect"))
+    // implementation(project(":feature-libredirect"))
     implementation(project(":integration-clearurl"))
     implementation(project(":integration-embed-resolve"))
     implementation(project(":integration-amp2html"))
     implementation(project(":sdk-common"))
     implementation(AndroidX.room.runtime)
     implementation(AndroidX.room.ktx)
-
 
     implementation("sh.calvin.reorderable:reorderable:_")
     implementation("org.jsoup:jsoup:_")
@@ -95,7 +95,6 @@ dependencies {
     implementation(KotlinX.serialization.json)
     implementation(KotlinX.serialization.protobuf)
     implementation(KotlinX.serialization.cbor)
-
 
     testImplementation(project(":test-fake"))
     testImplementation(project(":test-core"))

@@ -2,8 +2,9 @@ package app.linksheet.feature.app.core
 
 import android.content.Intent
 import android.content.pm.ResolveInfo
-import fe.linksheet.util.extension.android.toPackageKeyedMap
+import fe.kotlin.extension.iterable.toPackageKeyedMap
 import fe.linksheet.util.ResolveInfoFlags
+import fe.linksheet.util.extension.android.packageName
 import kotlin.collections.contains
 
 interface PackageLauncherService {
@@ -30,7 +31,7 @@ interface PackageLauncherService {
 
     override fun hasLauncher(packages: Set<String>): Pair<Set<String>, List<String>> {
         // TODO: Will this cause problems with apps which don't have a launcher?
-        val apps = queryIntentActivities(launcherIntent, ResolveInfoFlags.EMPTY).toPackageKeyedMap()
+        val apps = queryIntentActivities(launcherIntent, ResolveInfoFlags.EMPTY).toPackageKeyedMap { it.packageName }
 
         val noLauncher = packages.filter { it !in apps }
         return apps.keys to noLauncher

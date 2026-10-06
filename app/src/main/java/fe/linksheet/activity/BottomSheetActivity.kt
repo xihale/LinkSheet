@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.activity
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import android.content.Intent
 import android.os.Bundle

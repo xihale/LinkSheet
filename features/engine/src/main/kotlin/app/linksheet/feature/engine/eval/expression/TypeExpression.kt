@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package app.linksheet.feature.engine.eval.expression
 
 import android.content.ComponentName
@@ -7,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.annotation.Keep
 import app.linksheet.feature.engine.eval.EvalContext
+import fe.linksheet.util.intent.buildIntent
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName

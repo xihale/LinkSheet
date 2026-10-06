@@ -7,6 +7,7 @@ import fe.buildlogic.common.extension.addOptIn
 
 plugins {
     kotlin("android")
+    kotlin("plugin.compose")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("androidx.room")

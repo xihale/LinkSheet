@@ -4,7 +4,7 @@ import app.linksheet.api.PreferenceRegistry
 import fe.android.preference.helper.Preference
 
 interface BrowserPreferences {
-    val enable: Preference.Boolean
+    val enable: Preference.Default<Boolean>
 }
 
 fun browserPreferences(registry: PreferenceRegistry): BrowserPreferences {

@@ -12,6 +12,7 @@ import app.linksheet.feature.shizuku.viewmodel.ShizukuSettingsViewModel
 import fe.droidkit.koin.getPackageManager
 import fe.linksheet.util.ApplicationInfoFlags
 import fe.linksheet.util.IntentFilters
+import fe.linksheet.util.intent.buildIntent
 import fe.std.coroutines.RefreshableStateFlow
 import fe.std.coroutines.asStateFlow
 import fe.std.result.getOrNull

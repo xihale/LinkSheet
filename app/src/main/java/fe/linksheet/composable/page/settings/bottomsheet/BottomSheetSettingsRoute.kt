@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.bottomsheet
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.activity.compose.LocalActivity
 import androidx.annotation.StringRes

@@ -1,6 +1,6 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.browser.mode
 
+import android.content.ComponentName
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,7 +20,6 @@ import fe.linksheet.module.viewmodel.WhitelistedBrowsersViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
-private val FalsePair = false to false
 
 @Composable
 fun WhitelistedBrowsersSettingsRoute(

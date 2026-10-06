@@ -25,7 +25,7 @@ class DefaultPackageLabelService(
 
     override fun findBestLabel(applicationInfo: ApplicationInfo, launcher: ResolveInfo?): String {
         if (launcher != null) {
-            val label = loadComponentInfoLabel(launcher.info)
+            val label = loadComponentInfoLabel(launcher.activityInfo)
             if (label != null) return label
         }
 

@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.home
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity

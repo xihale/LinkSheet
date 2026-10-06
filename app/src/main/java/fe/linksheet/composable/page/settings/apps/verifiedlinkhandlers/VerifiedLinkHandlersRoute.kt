@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import android.os.Build
 import androidx.activity.compose.LocalActivity

@@ -3,8 +3,6 @@ package app.linksheet.feature.downloader
 import app.linksheet.feature.downloader.DownloadCheckResult.Downloadable
 import fe.linksheet.util.mime.KnownMimeTypes
 import fe.linksheet.util.mime.MimeType
-import fe.std.result.Result
-import fe.std.result.tryCatch
 import fe.std.uri.StdUrl
 import io.ktor.client.*
 import io.ktor.client.request.*

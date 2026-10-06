@@ -1,6 +1,6 @@
 package fe.linksheet.module.preference.app
 
-import app.linksheet.api.preference.AppPreferenceRepository
+import fe.composekit.preference.FlowPreferenceRepository
 
-typealias AppPreferenceRepository = AppPreferenceRepository
+typealias AppPreferenceRepository = FlowPreferenceRepository
 

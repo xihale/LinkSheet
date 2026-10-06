@@ -1,5 +1,6 @@
 package android.net
 
+import fe.std.process.android.AndroidVersion
 import java.net.URI
 
 @JvmInline

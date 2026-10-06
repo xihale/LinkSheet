@@ -32,6 +32,14 @@ import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
 import fe.android.compose.text.TextOptions
+import fe.composekit.component.ContentType
+import fe.composekit.component.PreviewThemeNew
+import fe.composekit.component.card.AlertCard
+import fe.composekit.component.card.AlertCardDefaults
+import fe.composekit.component.icon.IconOffset
+import fe.composekit.layout.column.SaneLazyListScope
+import fe.composekit.lifecycle.collectRefreshableAsStateWithLifecycle
+import fe.composekit.preference.FakePreferences
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -100,7 +108,7 @@ private fun SaneLazyListScope.notInstalled() {
         AlertCard(
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
             icon = Icons.Rounded.InstallMobile.iconPainter,
-            iconOffset = AlertCardDefaults.IconOffset,
+            iconOffset = AlertCardDefaults.iconOffset,
             iconContentDescription = stringResource(id = R.string.settings_shizuku__title_not_installed),
             headline = textContent(R.string.settings_shizuku__title_not_installed),
             subtitle = textContent(R.string.settings_shizuku__text_not_installed),
@@ -119,7 +127,7 @@ private fun SaneLazyListScope.notRunning(openManager: () -> Unit) {
         AlertCard(
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
             icon = Icons.Rounded.NotStarted.iconPainter,
-            iconOffset = AlertCardDefaults.IconOffset,
+            iconOffset = AlertCardDefaults.iconOffset,
             iconContentDescription = stringResource(id = R.string.settings_shizuku__title_not_running),
             headline = textContent(R.string.settings_shizuku__title_not_running),
             subtitle = textContent(R.string.settings_shizuku__text_not_running),
@@ -136,7 +144,7 @@ private fun SaneLazyListScope.noPermission(requestPermission: () -> Unit) {
         AlertCard(
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
             icon = Icons.Rounded.WarningAmber.iconPainter,
-            iconOffset = AlertCardDefaults.IconOffset,
+            iconOffset = AlertCardDefaults.iconOffset,
             iconContentDescription = stringResource(id = R.string.settings_shizuku__title_missing_permission),
             headline = textContent(R.string.settings_shizuku__title_missing_permission),
             subtitle = textContent(R.string.settings_shizuku__text_missing_permission),

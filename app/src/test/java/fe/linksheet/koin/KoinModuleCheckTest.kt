@@ -62,7 +62,6 @@ import fe.linksheet.module.language.AppLocaleService
 import fe.linksheet.module.log.file.LogPersistService
 import fe.linksheet.module.paste.PasteService
 import fe.linksheet.module.preference.app.AppPreferenceRepository
-import fe.linksheet.module.remoteconfig.RemoteConfigRepository
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.DisableInAppBrowserInSelectedRepository
 import fe.linksheet.module.repository.PreferredAppRepository
@@ -176,8 +175,7 @@ internal class KoinModuleCheckTest : BaseUnitTest {
             MiuiCompatProvider::class,
             MiuiCompat::class,
             DebugMenuSlotProvider::class,
-            PackageIntentHandler::class,
-            WorkDelegatorService::class
+            PackageIntentHandler::class
         ),
         definition<VerifiedLinkHandlersViewModel>(
             ShizukuServiceConnection::class,
@@ -211,7 +209,7 @@ internal class KoinModuleCheckTest : BaseUnitTest {
         definition<AppLocaleService>(List::class),
         definition<LanguageSettingsViewModel>(AppLocaleService::class),
         definition<SettingsViewModel>(AppLocaleService::class),
-        definition<ThemeSettingsViewModel>(RemoteConfigRepository::class),
+        definition<ThemeSettingsViewModel>(),
         definition<WorkDelegatorService>(WorkManager::class),
         definition<RedirectResolveRequest>(HttpClient::class),
         definition<Amp2HtmlResolveRequest>(HttpClient::class),

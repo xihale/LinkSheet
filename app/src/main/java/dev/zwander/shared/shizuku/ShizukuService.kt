@@ -5,8 +5,7 @@ import android.os.UserHandle
 import android.util.Log
 import androidx.annotation.Keep
 import dev.zwander.shared.IShizukuService
-import fe.std.process.android.AndroidStartConfig
-import fe.std.process.launchProcess
+import fe.std.process.android.AndroidVersion
 import kotlin.system.exitProcess
 
 class ShizukuService : IShizukuService.Stub {
@@ -25,7 +24,6 @@ class ShizukuService : IShizukuService.Stub {
                     "--user", userId,
                     "--package", packageName,
                     enabled.toString(),
-                    config = AndroidStartConfig
                 )
             } catch (e: Throwable) {
                 e.printStackTrace()
@@ -42,7 +40,6 @@ class ShizukuService : IShizukuService.Stub {
             "--user",
             userId,
             "--package", packageName, "true",
-            config = AndroidStartConfig
         ) { line ->
             Log.d("ShizukuService", line)
         }
@@ -53,14 +50,12 @@ class ShizukuService : IShizukuService.Stub {
             "--user",
             userId,
             packageName,
-            config = AndroidStartConfig
         ) { line ->
             Log.d("ShizukuService", line)
         }
 
         val verifyAppLinksResult = launchProcess(
             "pm", "verify-app-links", "--re-verify", packageName,
-            config = AndroidStartConfig
         ) { line ->
             Log.d("ShizukuService", line)
         }
@@ -74,3 +69,19 @@ class ShizukuService : IShizukuService.Stub {
         exitProcess(0)
     }
 }
+
+private fun launchProcess(
+    vararg args: String,
+    onLine: (String) -> Unit = {},
+): Int {
+    val process = ProcessBuilder(*args)
+        .redirectErrorStream(true)
+        .start()
+
+    process.inputStream.bufferedReader().useLines { lines ->
+        lines.forEach(onLine)
+    }
+
+    return process.waitFor()
+}
+

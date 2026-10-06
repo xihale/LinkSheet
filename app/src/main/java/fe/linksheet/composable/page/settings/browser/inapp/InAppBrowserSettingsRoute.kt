@@ -1,5 +1,5 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.composable.page.settings.browser.inapp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Settings

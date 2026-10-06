@@ -32,11 +32,6 @@ object Experiments : PreferenceDefinition(
     val libRedirectJsEngine = boolean(
         key = "experiment_enable_libredirect_js_engine"
     )
-
-    val enableAnalytics = boolean(
-        key = "experiment_enable_analytics",
-        default = false
-    )
     val noBottomSheetStateSave = boolean(
         key = "experiment_no_bottom_sheet_state_save"
     )
@@ -96,7 +91,6 @@ object Experiments : PreferenceDefinition(
 
     // TODO: Enforce type
     init {
-        enableAnalytics.migrate { repository, _ -> repository.put(enableAnalytics, false) }
         finalize()
     }
 

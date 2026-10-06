@@ -1,5 +1,7 @@
 package android.content.pm
 
+import fe.std.process.android.AndroidVersion
+
 
 fun PackageManager.getSignature(packageName: String): Signature? {
     val flag = if (AndroidVersion.isAtLeastApi28P() && false) PackageManager.GET_SIGNING_CERTIFICATES

@@ -17,15 +17,12 @@ class BrowsersUseCase(
 
     fun queryBrowser(packageName: String): ActivityAppInfo? {
         val browser = packageIntentHandler.findHttpBrowsable(packageName).firstOrNull() ?: return null
-        return creator.toActivityAppInfo(browser, null)
+        return creator.toActivityAppInfo(browser)
     }
 
     fun queryBrowsers(): List<ActivityAppInfo> {
         return packageIntentHandler.findHttpBrowsable(null).map {
-            creator.toActivityAppInfo(
-                it,
-                null
-            )
+            creator.toActivityAppInfo(it)
         }
     }
 }

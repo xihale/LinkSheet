@@ -1,4 +1,3 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.profile.ui
 
 import android.app.Activity
@@ -29,7 +28,6 @@ import app.linksheet.feature.profile.viewmodel.ProfileSwitchingSettingsViewModel
 import fe.android.compose.icon.BitmapIconPainter.Companion.bitmap
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
 @RequiresApi(Build.VERSION_CODES.P)

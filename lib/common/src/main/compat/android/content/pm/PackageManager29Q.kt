@@ -1,5 +1,7 @@
 package android.content.pm
 
+import fe.std.process.android.AndroidVersion
+
 
 fun PackageManager.getInstallerFor(packageName: String): String? {
     return when {

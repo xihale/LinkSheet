@@ -5,9 +5,14 @@ plugins {
 
 android {
     namespace = "app.linksheet.common"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 26
+    }
+    sourceSets {
+        getByName("main") {
+            kotlin.srcDir("src/main/compat")
+        }
     }
 }
 

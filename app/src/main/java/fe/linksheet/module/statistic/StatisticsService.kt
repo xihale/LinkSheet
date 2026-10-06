@@ -7,7 +7,6 @@ import fe.linksheet.module.preference.PreferenceRepositoryModule
 import fe.linksheet.module.preference.SensitivePreference
 import fe.linksheet.module.preference.app.AppPreferenceRepository
 import fe.linksheet.module.preference.app.AppPreferences
-import fe.linksheet.module.remoteconfig.RemoteConfigClientModule
 import org.koin.dsl.module
 
 val StatisticsModule = module {

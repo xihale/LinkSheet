@@ -1,6 +1,5 @@
 package app.linksheet.feature.browser.viewmodel
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.linksheet.feature.app.applist.AppListCommon
@@ -34,10 +33,11 @@ class PrivateBrowsingBrowserSettingsViewModel internal constructor(
     }
 
     fun save(app: ActivityAppInfo, enabled: Boolean) = viewModelScope.launch(dispatcher) {
+        val flatComponentName = app.componentName.flattenToString()
         if (enabled) {
-            repository.insert(app.flatComponentName)
+            repository.insert(flatComponentName)
         } else {
-            repository.deleteByFlatComponentName(app.flatComponentName)
+            repository.deleteByFlatComponentName(flatComponentName)
         }
     }
 }

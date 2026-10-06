@@ -1,4 +1,3 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package app.linksheet.feature.wiki.ui
 
 import androidx.compose.foundation.layout.Box

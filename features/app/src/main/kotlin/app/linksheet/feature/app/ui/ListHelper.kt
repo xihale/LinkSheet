@@ -7,10 +7,11 @@ import androidx.compose.ui.graphics.Shape
 import app.linksheet.compose.extension.listHelper
 import app.linksheet.compose.util.ListState
 import app.linksheet.feature.app.R
-import app.linksheet.feature.app.core.IAppInfo
+import app.linksheet.feature.app.core.IAppInfoBase
+import fe.composekit.layout.column.SaneLazyListScope
 
 
-fun <T : IAppInfo> SaneLazyListScope.appList(
+fun <T : IAppInfoBase> SaneLazyListScope.appList(
     listState: ListState,
     list: List<T>?,
     listKey: (T) -> Any,

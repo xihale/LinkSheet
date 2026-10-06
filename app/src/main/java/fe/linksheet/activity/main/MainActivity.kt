@@ -1,4 +1,3 @@
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 package fe.linksheet.activity.main
 
 import android.annotation.SuppressLint
@@ -14,13 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import fe.linksheet.activity.UiEventReceiverBaseComponentActivity
 import fe.linksheet.activity.util.DebugStatePublisher
 import fe.linksheet.activity.util.NavGraphDebugState
 import fe.linksheet.activity.util.UiEvent
-import fe.linksheet.activity.UiEventReceiverBaseComponentActivity
-import fe.linksheet.composable.page.settings.privacy.analytics.rememberAnalyticDialog
-import fe.linksheet.composable.page.settings.privacy.remoteconfig.rememberRemoteConfigDialog
 import fe.linksheet.composable.ui.BoxAppHost
 import fe.linksheet.extension.compose.AddIntentDeepLinkHandler
 import fe.linksheet.extension.compose.ObserveDestination
@@ -51,40 +47,6 @@ class MainActivity : UiEventReceiverBaseComponentActivity() {
                 }
 
                 AddIntentDeepLinkHandler(navController = navController)
-
-                val remoteConfigDialogDismissed by viewModel.remoteConfigDialogDismissed.collectAsStateWithLifecycle(
-                    // Assume true to avoid having to show, then quickly dismiss the dialog, once the actual state is emitted to the flow
-                    initialValue = true
-                )
-                val remoteConfigDialog = rememberRemoteConfigDialog(
-                    onChanged = { viewModel.setRemoteConfig(it) }
-                )
-
-                LaunchedEffect(key1 = remoteConfigDialogDismissed) {
-                    if (!remoteConfigDialogDismissed) {
-                        remoteConfigDialog.open()
-                    }
-                }
-
-                if (Build.IsDebug) {
-                    navController.ObserveDestination { _, destination, args ->
-                        viewModel.enqueueNavEvent(destination, args)
-                    }
-
-                    val telemetryLevel by viewModel.telemetryLevel.collectAsStateWithLifecycle()
-                    val telemetryShowInfoDialog by viewModel.telemetryShowInfoDialog.collectAsStateWithLifecycle()
-
-                    val analyticsDialog = rememberAnalyticDialog(
-                        telemetryLevel = telemetryLevel,
-                        onChanged = { viewModel.updateTelemetryLevel(it) }
-                    )
-
-                    LaunchedEffect(key1 = Unit) {
-                        if (telemetryShowInfoDialog) {
-                            analyticsDialog.open()
-                        }
-                    }
-                }
 
                 MainNavHost(
                     navController = navController,

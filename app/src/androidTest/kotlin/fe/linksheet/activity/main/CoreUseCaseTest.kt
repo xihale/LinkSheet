@@ -1,6 +1,7 @@
 package fe.linksheet.activity.main
 
 import android.content.Intent
+import fe.linksheet.util.intent.buildIntent
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.net.toUri
