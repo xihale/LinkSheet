@@ -2,6 +2,7 @@
 local.properties
 .idea/
 build
+*.class
 app/release
 .ignored
 app/*.txt
